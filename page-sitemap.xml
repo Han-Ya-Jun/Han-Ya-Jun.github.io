@@ -7,29 +7,29 @@
     </url>
     
     <url>
-        <loc>http://www.hanyajun.com/tags/</loc>
-        <lastmod>2019-04-20T16:36:39.070Z</lastmod>
+        <loc>http://www.hanyajun.com/archive/</loc>
+        <lastmod>2019-04-20T16:50:11.599Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>http://www.hanyajun.com/about/</loc>
-        <lastmod>2019-04-20T13:34:51.375Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>http://www.hanyajun.com/archive/</loc>
-        <lastmod>2019-04-20T13:02:55.521Z</lastmod>
+        <lastmod>2019-04-20T16:50:11.582Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>http://www.hanyajun.com/404.html</loc>
-        <lastmod>2019-04-19T10:14:43.949Z</lastmod>
+        <lastmod>2019-04-20T16:50:11.556Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>http://www.hanyajun.com/tags/</loc>
+        <lastmod>2019-04-20T16:36:39.070Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
