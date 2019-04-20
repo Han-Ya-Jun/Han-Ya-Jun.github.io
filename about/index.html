@@ -93,7 +93,15 @@
                     <div class="site-heading">
                         <h1>About</h1>
                         <!--<hr class="small">-->
-                        <span class="subheading">走在成为极客的路上</span>
+                        <span class="subheading"><span id="jrsc">正在加载今日诗词....</span></span>
+                        <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+                        <script type="text/javascript">
+                                jinrishici.load(function (result) {
+                                console.log(result.data.content, result.data.origin.author, result.data.origin.dynasty);
+                                var string = result.data.content + "  ——" + result.data.origin.dynasty + "·" + result.data.origin.author;
+                                document.getElementById("jrsc").innerHTML = string;
+                            });
+                        </script>
                     </div>
                 
 

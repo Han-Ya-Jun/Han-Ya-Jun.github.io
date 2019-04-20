@@ -93,7 +93,15 @@
                     <div class="site-heading">
                         <h1>韩亚军</h1>
                         <!--<hr class="small">-->
-                        <span class="subheading">个人博客</span>
+                        <span class="subheading"><span id="jrsc">正在加载今日诗词....</span></span>
+                        <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+                        <script type="text/javascript">
+                                jinrishici.load(function (result) {
+                                console.log(result.data.content, result.data.origin.author, result.data.origin.dynasty);
+                                var string = result.data.content + "  ——" + result.data.origin.dynasty + "·" + result.data.origin.author;
+                                document.getElementById("jrsc").innerHTML = string;
+                            });
+                        </script>
                     </div>
                 
 
@@ -241,6 +249,8 @@
                 <!-- <font color=#1CB7ED>置顶</font>  -->
             
             kubernetes从入门到放弃--k8s基本架构
+            <span id="jinrishici-sentence">正在加载今日诗词....</span>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         </h2>
         <h3 class="post-subtitle">
             kubernetes基本架构
@@ -281,6 +291,8 @@ API Server（kube-apiserver）
         <h2 class="post-title">
             
             kubernetes从入门到放弃--k8s基本概念
+            <span id="jinrishici-sentence">正在加载今日诗词....</span>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
         </h2>
         <h3 class="post-subtitle">
             kubernetes基本概念
