@@ -168,6 +168,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -176,13 +183,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                      -->
@@ -238,14 +238,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="1-kubernetes总架构图">1. kubernetes总架构图</h3>
+                <h3 id="kubernetes总架构图">kubernetes总架构图</h3>
 <p><img src="http://cdn.hanyajun.com/k8s-arch.jpg" alt="image"></p>
-<h3 id="2-kubernetes-各组件介绍">2. kubernetes 各组件介绍</h3>
-<h4 id="21-master-节点">2.1 Master 节点</h4>
+<h3 id="kubernetes-各组件介绍">kubernetes 各组件介绍</h3>
+<h4 id="master-节点">Master 节点</h4>
 <p>Master是kubernetes的大脑，运行的Deamon 服务包括kube-apiserver、kube-scheduler、kube-contronller-</p>
 <p>manager、etcd和pod网络</p>
 <p><img src="http://cdn.hanyajun.com/k8s_master.jpeg" alt="image"></p>
-<h5 id="211-各组件介绍">2.1.1 各组件介绍</h5>
+<h5 id="各组件介绍">各组件介绍</h5>
 <ul>
 <li>
 <p><strong>API Server</strong>（kube-apiserver）<br></p>
@@ -274,7 +274,7 @@
 <p>Pod要能够相同通信，Kubernetes Cluster必须部署Pod网络，flannel是其中一个可选方案。</p>
 </li>
 </ul>
-<h5 id="212-master工作流程图">2.1.2 master工作流程图</h5>
+<h5 id="master工作流程图">master工作流程图</h5>
 <p><img src="http://cdn.hanyajun.com/k8s_master_workflow.png" alt="image"></p>
 <ol>
 <li>
@@ -299,10 +299,10 @@
 <p>依据从Kubernetes Client获取的信息，Scheduler将未分发的Pod分发到可用的Minion/Node节点上。</p>
 </li>
 </ol>
-<h4 id="22-node节点">2.2　Node节点</h4>
+<h4 id="node节点">Node节点</h4>
 <p>Node节点属于工作节点,是pod运行的地方。</p>
 <p><img src="http://cdn.hanyajun.com/k8s_node.jpg" alt="image"></p>
-<h5 id="221-各组件介绍">2.2.1 各组件介绍</h5>
+<h5 id="各组件介绍">各组件介绍</h5>
 <ol>
 <li>
 <p><strong>kubelet</strong>　<br></p>
@@ -319,7 +319,7 @@
 <p>pod能能够互相通信，k8s集群必须部署pod网络，flannel是其中一个可以选择的方案</p>
 </li>
 </ol>
-<h5 id="222-kubectl-架构解读">２.2.2 kubectl 架构解读</h5>
+<h5 id="kubectl-架构解读">kubectl 架构解读</h5>
 <p><img src="http://cdn.hanyajun.com/kubelet.png" alt="image"></p>
 <h6 id="kubelet节点上的pod管家">Kubelet[节点上的Pod管家]</h6>
 <p>负责Node节点上pod的创建、修改、监控、删除等全生命周期的管理<br>
@@ -412,7 +412,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-kubernetes总架构图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. kubernetes&#x603B;&#x67B6;&#x6784;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-kubernetes-各组件介绍"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. kubernetes &#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#21-master-节点"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">2.1 Master &#x8282;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#211-各组件介绍"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">2.1.1 &#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#212-master工作流程图"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">2.1.2 master&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x56FE;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#22-node节点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">2.2&#x3000;Node&#x8282;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#221-各组件介绍"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">2.2.1 &#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#222-kubectl-架构解读"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">&#xFF12;.2.2 kubectl &#x67B6;&#x6784;&#x89E3;&#x8BFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#kubelet节点上的pod管家"><span class="toc-nav-number">2.2.2.1.</span> <span class="toc-nav-text">Kubelet[&#x8282;&#x70B9;&#x4E0A;&#x7684;Pod&#x7BA1;&#x5BB6;]</span></a></li></ol></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#kubernetes总架构图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kubernetes&#x603B;&#x67B6;&#x6784;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#kubernetes-各组件介绍"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">kubernetes &#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#master-节点"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Master &#x8282;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#各组件介绍"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">&#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#master工作流程图"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">master&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x56FE;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#node节点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">Node&#x8282;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#各组件介绍"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">&#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#kubectl-架构解读"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">kubectl &#x67B6;&#x6784;&#x89E3;&#x8BFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#kubelet节点上的pod管家"><span class="toc-nav-number">2.2.2.1.</span> <span class="toc-nav-text">Kubelet[&#x8282;&#x70B9;&#x4E0A;&#x7684;Pod&#x7BA1;&#x5BB6;]</span></a></li></ol></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
