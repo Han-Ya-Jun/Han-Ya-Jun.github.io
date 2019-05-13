@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          kubernetes从入门到放弃--k8s基本概念 - 朗月清风
+          kubernetes从入门到放弃--使用kubeadm快速安装kubernetes - 朗月清风
         
     </title>
 
-    <link rel="canonical" href="https://hanyajun.com/kubernetes/kubenetes_concept/">
+    <link rel="canonical" href="https://hanyajun.com/kubernetes/kubernetes_kubeadm/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -96,8 +96,8 @@
                               <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
                             
                         </div>
-                        <h1>kubernetes从入门到放弃--k8s基本概念</h1>
-                        <h2 class="subheading">kubernetes基本概念</h2>
+                        <h1>kubernetes从入门到放弃--使用kubeadm快速安装kubernetes</h1>
+                        <h2 class="subheading">使用kubeadm快速安装kubernetes</h2>
 
                         <!--文章访问量统计-->
                         
@@ -107,7 +107,7 @@
 
                         <span class="meta">
                             Posted by 韩亚军 on
-                            2019-04-18
+                            2019-04-23
                         </span>
                     </div>
                 
@@ -238,39 +238,69 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="kubernetes架构图">kubernetes架构图</h4>
-<p>下图为kubernetes的master架构图<br>
-<img src="https://jimmysong.io/kubernetes-handbook/images/kubernetes-high-level-component-archtecture.jpg" alt="image"></p>
-<h3 id="1-cluster">1. <strong>Cluster</strong></h3>
-<p>cluster是计算、存储和网络资源的集合，kubernetes利用这些资源运行各种基于容器的应用。</p>
-<h3 id="2-master">2. <strong>Master</strong></h3>
-<p>Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用放在哪里运行。master运行linux操作系统，可以是物理机或者虚拟机。为了实现高可用，可以运行多个Master。</p>
-<h3 id="3-node">3. Node</h3>
-<p>Node 的职责是运行容器应用。Node由Master管理，Node负责监控并汇报容器的状态，同时根据Master的要求管理容器的生命周期。Node运行在linux系统上，可以是物理机或者虚拟机。</p>
-<h3 id="4-pod">4. Pod</h3>
-<p>Pod是kubernetes的最小工作单元。每个pod可以包含一个或者多个容器。Pod中的容器会作为一个整体被Master调度到一个Node上运行。kubernetes 以<strong>Pod</strong>为最小单位进行调度、扩展、共享资源、管理生命周期；pod中的所有容器都共享一个网络namespace，所有的容器可以共享存储。</p>
+                <p>kubeadm是Kubernetes官方提供的用于快速安装 Kubernetes<br>
+集群的工具，通过将集群的各个组件进行容器化安装管理，通过kubeadm的方式安装集群比二进制的方式安装要方便不少，但是目录kubeadm还处于beta状态，还不能用于生产环境，Using kubeadm to Create a Cluster文档中已经说明kubeadm将会很快能够用于生产环境了。</p>
+<h3 id="准备三台centos的机器">准备三台centos的机器</h3>
+<p>为了后续方便，每台机器的hosts文件加上这个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.211.131 master</span><br><span class="line">192.168.211.132 note1</span><br><span class="line">192.168.211.133 note2</span><br></pre></td></tr></table></figure>
+<h3 id="关闭centos自带的防火墙">关闭centos自带的防火墙</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br><span class="line"></span><br><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+<h3 id="添加yum仓库">添加yum仓库</h3>
+<p>可以去阿里云的仓库(<a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">https://opsx.alibaba.com/mirror</a>)下载相应的仓库至/etc/yum.repos.d目录下。<br>
+如：</p>
 <ul>
-<li>pod有两种使用方式：</li>
+<li>docker(<a href="https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo" target="_blank" rel="noopener">https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a>)<br>
+<img src="http://cdn.hanyajun.com/docker.png" alt="image"></li>
+<li>kubernetes 没有现成的repo需要我们自己写一个。<br><br>
+kubernetes.repo</li>
 </ul>
-<ol>
-<li>运行单一容器：<br><br>
-one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是将单个容器简单封装成pod。即使只有一个容器，kubernetes管理的也是pod而不是直接管理容器。</li>
-<li>运行多个容器:<br><br>
-运行在同一个pod的的多个容器必须联系紧密，而且直接共享资源。</li>
-</ol>
-<h3 id="5-controller">5. Controller</h3>
-<p>kubernetes通常不会直接去创建pod，而是通过Controller去管理pod的，Controller中定义了Pod的部署特性，比如有几个副本、什么样的Node上运行等。为了满足不同的业务场景，kubernetes提供了多种Controller，包括Deployment、ReplicaSet、DeamonSet、StatefuleSet、Job等，我们逐一讨论。</p>
-<ul>
-<li>Deployment :是最常用的的Controller，deployment可以管理pod的多个副本，并确保pod按照预期的状态来运行。</li>
-<li>ReplicaSet : 实现了pod的多副本管理。使用Deployment时会自动创建Replicaset。</li>
-<li>DeamonSet: 用于每个Node最多只能运行一个Pod副本的场景。</li>
-<li>StatefuleSet:能够保证Pod的每个副本在整个生命周期中名称是不变的，而其它Controller是提供这个功能。当某个Pod发生故障需要删除并且重新启动时，Pod的名称会发生变化，同时StatefuleSet会保证副本按照固定的顺序启动、更新或者删除。</li>
-<li>Job 用于运行就删除的应用，而其他Controller　中的ｐｏｄ通常是持续运行的。</li>
-</ul>
-<h3 id="6-service">6. Service</h3>
-<p>Deployment 可以部署多个副本，每个Pod都有自己的Ip，那么外界如何访问这些副本呢？Kubernetes Service 定义了外界访问一组特定Pod的方式。Service 有自己的IP和端口，Service为pod提供了负载均衡。K8s运行容器Pod与访问容器Pod这两项任务分别由Controller和Service执行。</p>
-<h3 id="7-namespace">7. Namespace</h3>
-<p>如果有多个用户或者项目组共同使用k8s 集群，如果将他们创建的Pod等资源分开呢，就是通过Namespace进行隔离。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[kubernetes]</span><br><span class="line">name=kubernetes Repo</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">gpgcheck=0</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+<p>如果出现gpgkey检查有问题，我们就自己手动import下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg</span><br><span class="line"></span><br><span class="line">rpm --import yum-key.gpg</span><br></pre></td></tr></table></figure>
+<h3 id="安装dockerkubectlkubeadmkubelet">安装docker,kubectl,kubeadm,kubelet,</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce kubelet kubeadm kubectl</span><br></pre></td></tr></table></figure>
+<h3 id="启动docker">启动docker</h3>
+<p>在启动docker之前，为了后续安装k8s方便（添加代理），需要修改dokcer服务配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br></pre></td></tr></table></figure>
+<p>添加两个环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Environment=&quot;HTTPS_PROXY=http://192.168.137.1:10080&quot; //自己的代理</span><br><span class="line">Environment=&quot;NO_PROXY=127.0.0.0/8,172.20.0.0/16&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.hanyajun.com/docker_config.png" alt="image"></p>
+<p>启动docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload//重新加载配置</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker //开启自启动</span><br></pre></td></tr></table></figure>
+<p><em>注意检查/proc/sys/net/bridge/bridge-nf-call-ip6tables和/proc/sys/net/bridge/bridge-nf-call-iptables，保证值为1，为了保证后面iptables正常的桥接功能</em><br></p>
+<p>如果不是1，可以设设置下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;1&apos; &gt; /proc/sys/net/bridge/bridge-nf-call-iptables</span><br><span class="line">echo &apos;1&apos; &gt; /proc/sys/net/bridge/bridge-nf-call-ip6tables</span><br></pre></td></tr></table></figure>
+<h3 id="设置kubelet忽略swap同时设置为开机启动">设置kubelet(忽略swap)，同时设置为开机启动。</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/kubelet</span><br><span class="line"></span><br><span class="line">systemctl enable kubelet</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190419114526812.png" alt="在这里插入图片描述"></p>
+<p>也可以禁用swap</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo swapoff -a</span><br><span class="line"></span><br><span class="line">sed -i &apos;/ swap / s/^/#/&apos; /etc/fstab</span><br></pre></td></tr></table></figure>
+<p>用yum源的方式安装的kubelet生成的配置文件将参数–cgroup-driver改成了systemd，而docker的</p>
+<p>cgroup-driver是cgroupfs，这二者必须一致才行，我们可以通过docker info命令查看<br>
+<img src="https://img-blog.csdnimg.cn/20190419114608239.png" alt="在这里插入图片描述"><br>
+如果不一致,可以修改文件kubelet的配置文件/etc/systemd/system/kubelet.service.d/10-</p>
+<p>kubeadm.conf，将其中的KUBELET_CGROUP_ARGS参数更改成cgroupfs：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Environment=&quot;KUBELET_CGROUP_ARGS=--cgroup-driver=cgroupfs&quot;</span><br></pre></td></tr></table></figure>
+<p>或者修改docker配置文件<br>
+vim /etc/docker/daemon.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">    <span class="attr">"exec-opts"</span>: [<span class="string">"native.cgroupdriver=systemd"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@note2 hanyajun]# systemctl daemon-reload</span><br><span class="line">[root@note2 hanyajun]# systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h3 id="初始化集群">初始化集群</h3>
+<p>在master节点上用kubeadm命令来初始化我们的集群了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12 --ignore-preflight-errors=Swap</span><br></pre></td></tr></table></figure>
+<p>命令非常简单，就是kubeadm init，后面的参数是需要安装的集群版本，因为我们这里选择flannel作为 Pod 的网络插件，所以需要指定–pod-network-cidr=10.244.0.0/16，然后是apiserver的通信地址，这里就是我们master节点的IP 地址。执行上面的命令，如果出现 running with swap on is not supported. Please disable swap之类的错误，则我们还需要增加一个参数–ignore-preflight-errors=Swap来忽略swap的错误提示信息：<br>
+在这里插入图片描述</p>
+<h3 id="安装-pod-network">安装 Pod Network</h3>
+<p>For Kubernetes v1.7+ (<a href="https://github.com/coreos/flannel" target="_blank" rel="noopener">https://github.com/coreos/flannel</a>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<p>安装完成后使用kubectl get pods命令可以查看到我们集群中的组件运行状态，如果都是Running状态的话，那么恭喜你，你的master节点安装成功了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master hanyajun]# kubectl get pods --all-namespaces</span><br><span class="line">NAMESPACE     NAME                             READY   STATUS    RESTARTS   AGE</span><br><span class="line">kube-system   coredns-fb8b8dccf-ddpzg          1/1     Running   0          61m</span><br><span class="line">kube-system   coredns-fb8b8dccf-ptz2g          1/1     Running   0          61m</span><br><span class="line">kube-system   etcd-master                      1/1     Running   0          60m</span><br><span class="line">kube-system   kube-apiserver-master            1/1     Running   0          60m</span><br><span class="line">kube-system   kube-controller-manager-master   1/1     Running   0          60m</span><br><span class="line">kube-system   kube-flannel-ds-amd64-ts46h      1/1     Running   0          55m</span><br><span class="line">kube-system   kube-proxy-wjv4g                 1/1     Running   0          61m</span><br><span class="line">kube-system   kube-scheduler-master            1/1     Running   0          60m</span><br><span class="line">[root@master hanyajun]#</span><br></pre></td></tr></table></figure>
+<h3 id="添加节点">添加节点</h3>
+<p>直接在 Node 节点上执行kubeadm join命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 192.168.211.131:6443 --token ferqkx.ituywx5n5cxx9mko --discovery-token-ca-cert-hash sha256:f3af0e15c4f6c27327fd04bdcaff97525030bb55ee80f72c118284efaf074cdc --ignore-preflight-errors=Swap</span><br></pre></td></tr></table></figure>
+<p>可以直接在master通过下面这个指令查看节点情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[root@master hanyajun]# kubectl get nodes</span><br><span class="line">NAME     STATUS   ROLES    AGE     VERSION</span><br><span class="line">master   Ready    master   96m     v1.14.1</span><br><span class="line">note1    Ready    &lt;none&gt;   24m     v1.14.1</span><br><span class="line">note2    Ready    &lt;none&gt;   4m46s   v1.14.1</span><br><span class="line">[root@master hanyajun]#</span><br></pre></td></tr></table></figure>
+<p>到这里就算我们的集群部署成功了，接下来就可以根据我们的需要安装一些附加的插件，比如 Dashboard、Heapster、Ingress-Controller等等。</p>
 
                 
 
@@ -279,9 +309,13 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/kubernetes/kubernetes_architecture/" data-toggle="tooltip" data-placement="top" title="kubernetes从入门到放弃--k8s基本架构">&larr; Previous Post</a>
+                            <a href="/devops/travis-ci/" data-toggle="tooltip" data-placement="top" title="如何使用travis-ci自动化构建部署GitHub Pages（gitbook）">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/life/rain_worry/" data-toggle="tooltip" data-placement="top" title="夜雨思愁">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -339,12 +373,18 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#kubernetes架构图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kubernetes&#x67B6;&#x6784;&#x56FE;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-cluster"><span class="toc-nav-number"></span> <span class="toc-nav-text">1. <strong>Cluster</strong></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-master"><span class="toc-nav-number"></span> <span class="toc-nav-text">2. <strong>Master</strong></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-node"><span class="toc-nav-number"></span> <span class="toc-nav-text">3. Node</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-pod"><span class="toc-nav-number"></span> <span class="toc-nav-text">4. Pod</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#5-controller"><span class="toc-nav-number"></span> <span class="toc-nav-text">5. Controller</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-service"><span class="toc-nav-number"></span> <span class="toc-nav-text">6. Service</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-namespace"><span class="toc-nav-number"></span> <span class="toc-nav-text">7. Namespace</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#准备三台centos的机器"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x51C6;&#x5907;&#x4E09;&#x53F0;centos&#x7684;&#x673A;&#x5668;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#关闭centos自带的防火墙"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5173;&#x95ED;centos&#x81EA;&#x5E26;&#x7684;&#x9632;&#x706B;&#x5899;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#添加yum仓库"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x6DFB;&#x52A0;yum&#x4ED3;&#x5E93;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装dockerkubectlkubeadmkubelet"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;docker,kubectl,kubeadm,kubelet,</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#启动docker"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x542F;&#x52A8;docker</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设置kubelet忽略swap同时设置为开机启动"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x8BBE;&#x7F6E;kubelet(&#x5FFD;&#x7565;swap)&#xFF0C;&#x540C;&#x65F6;&#x8BBE;&#x7F6E;&#x4E3A;&#x5F00;&#x673A;&#x542F;&#x52A8;&#x3002;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#初始化集群"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">&#x521D;&#x59CB;&#x5316;&#x96C6;&#x7FA4;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装-pod-network"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">&#x5B89;&#x88C5; Pod Network</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#添加节点"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">&#x6DFB;&#x52A0;&#x8282;&#x70B9;</span></a></li></ol>
         
         </div>
       </aside>

@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          kubernetes从入门到放弃--k8s基本概念 - 朗月清风
+          如何使用travis-ci自动化构建部署GitHub Pages（gitbook） - 朗月清风
         
     </title>
 
-    <link rel="canonical" href="https://hanyajun.com/kubernetes/kubenetes_concept/">
+    <link rel="canonical" href="https://hanyajun.com/devops/travis-ci/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -66,6 +66,9 @@
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 
@@ -76,7 +79,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('http://cdn.hanyajun.com/k8s_bg.jpg')
+            background-image: url('http://cdn.hanyajun.com/city.jpg')
             /*post*/
         
     }
@@ -93,11 +96,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                              <a class="tag" href="/tags/#devops" title="devops">devops</a>
                             
                         </div>
-                        <h1>kubernetes从入门到放弃--k8s基本概念</h1>
-                        <h2 class="subheading">kubernetes基本概念</h2>
+                        <h1>如何使用travis-ci自动化构建部署GitHub Pages（gitbook）</h1>
+                        <h2 class="subheading">travis-ci</h2>
 
                         <!--文章访问量统计-->
                         
@@ -107,7 +110,7 @@
 
                         <span class="meta">
                             Posted by 韩亚军 on
-                            2019-04-18
+                            2019-04-26
                         </span>
                     </div>
                 
@@ -238,40 +241,38 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="kubernetes架构图">kubernetes架构图</h4>
-<p>下图为kubernetes的master架构图<br>
-<img src="https://jimmysong.io/kubernetes-handbook/images/kubernetes-high-level-component-archtecture.jpg" alt="image"></p>
-<h3 id="1-cluster">1. <strong>Cluster</strong></h3>
-<p>cluster是计算、存储和网络资源的集合，kubernetes利用这些资源运行各种基于容器的应用。</p>
-<h3 id="2-master">2. <strong>Master</strong></h3>
-<p>Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用放在哪里运行。master运行linux操作系统，可以是物理机或者虚拟机。为了实现高可用，可以运行多个Master。</p>
-<h3 id="3-node">3. Node</h3>
-<p>Node 的职责是运行容器应用。Node由Master管理，Node负责监控并汇报容器的状态，同时根据Master的要求管理容器的生命周期。Node运行在linux系统上，可以是物理机或者虚拟机。</p>
-<h3 id="4-pod">4. Pod</h3>
-<p>Pod是kubernetes的最小工作单元。每个pod可以包含一个或者多个容器。Pod中的容器会作为一个整体被Master调度到一个Node上运行。kubernetes 以<strong>Pod</strong>为最小单位进行调度、扩展、共享资源、管理生命周期；pod中的所有容器都共享一个网络namespace，所有的容器可以共享存储。</p>
+                <h4 id="github-pages">Github Pages</h4>
+<p>github pages可以当做你或者你的项目的 Websites，那么我们可以知道 GitHub Pages 有两种最基本的用法：</p>
 <ul>
-<li>pod有两种使用方式：</li>
+<li>作为你自己（或者组织）的网站或者博客（访问地址示例：<a href="http://username.github.io" target="_blank" rel="noopener">http://username.github.io</a>）</li>
+<li>作为你某一个项目的网站（访问地址示例：<a href="http://username.github.io/projectname%EF%BC%89" target="_blank" rel="noopener">http://username.github.io/projectname）</a><br></li>
 </ul>
-<ol>
-<li>运行单一容器：<br><br>
-one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是将单个容器简单封装成pod。即使只有一个容器，kubernetes管理的也是pod而不是直接管理容器。</li>
-<li>运行多个容器:<br><br>
-运行在同一个pod的的多个容器必须联系紧密，而且直接共享资源。</li>
-</ol>
-<h3 id="5-controller">5. Controller</h3>
-<p>kubernetes通常不会直接去创建pod，而是通过Controller去管理pod的，Controller中定义了Pod的部署特性，比如有几个副本、什么样的Node上运行等。为了满足不同的业务场景，kubernetes提供了多种Controller，包括Deployment、ReplicaSet、DeamonSet、StatefuleSet、Job等，我们逐一讨论。</p>
+<p>如果是第二种的话部署的时候需要在源仓库的基础上再创建一个gh-pages的分支，然后部署的时候需要将在源仓库生成的静态文件单独拎出来放到gh-pages分支上push上去，整个操作流程比较麻烦，而<a href="https://travis-ci.org/" target="_blank" rel="noopener">travis-ci</a>可以很方便帮们解决这个痛点。</p>
+<h4 id="配置travis-ci">配置travis-ci</h4>
+<h5 id="登录-travis">登录 travis</h5>
 <ul>
-<li>Deployment :是最常用的的Controller，deployment可以管理pod的多个副本，并确保pod按照预期的状态来运行。</li>
-<li>ReplicaSet : 实现了pod的多副本管理。使用Deployment时会自动创建Replicaset。</li>
-<li>DeamonSet: 用于每个Node最多只能运行一个Pod副本的场景。</li>
-<li>StatefuleSet:能够保证Pod的每个副本在整个生命周期中名称是不变的，而其它Controller是提供这个功能。当某个Pod发生故障需要删除并且重新启动时，Pod的名称会发生变化，同时StatefuleSet会保证副本按照固定的顺序启动、更新或者删除。</li>
-<li>Job 用于运行就删除的应用，而其他Controller　中的ｐｏｄ通常是持续运行的。</li>
+<li>
+<p><a href="https://travis-ci.org/%EF%BC%88%E5%85%8D%E8%B4%B9%EF%BC%89" target="_blank" rel="noopener">https://travis-ci.org/（免费）</a></p>
+</li>
+<li>
+<p><a href="https://travis-ci.com/%EF%BC%88%E6%94%B6%E8%B4%B9%EF%BC%89" target="_blank" rel="noopener">https://travis-ci.com/（收费）</a><br></p>
+</li>
 </ul>
-<h3 id="6-service">6. Service</h3>
-<p>Deployment 可以部署多个副本，每个Pod都有自己的Ip，那么外界如何访问这些副本呢？Kubernetes Service 定义了外界访问一组特定Pod的方式。Service 有自己的IP和端口，Service为pod提供了负载均衡。K8s运行容器Pod与访问容器Pod这两项任务分别由Controller和Service执行。</p>
-<h3 id="7-namespace">7. Namespace</h3>
-<p>如果有多个用户或者项目组共同使用k8s 集群，如果将他们创建的Pod等资源分开呢，就是通过Namespace进行隔离。</p>
+<p>登录时使用GitHub账号登录，此时为了让travis获取调用GitHub Api的权限需要在GitHub上生成一个token。<br>
+在github(<a href="https://github.com/settings/tokens" target="_blank" rel="noopener">https://github.com/settings/tokens</a>)   Settings/ Developer settings 新生成一个travis专用的token.</p>
+<p><img src="http://cdn.hanyajun.com/travis.png" alt="image"></p>
+<h5 id="在travis-配置token环境变量">在travis 配置token环境变量</h5>
+<p>在你需要构建的仓库的设置里添加GITHUB_TOKEN环境变量。</p>
+<p><img src="http://cdn.hanyajun.com/travis_token.png" alt="image"></p>
+<h5 id="创建-配置文件">创建 配置文件</h5>
+<p>在你的github pages 项目里面新建.travis.yml配置文件。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">node_js</span> <span class="comment"># 构建所需的语言环境</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"v11.14.0"</span>  <span class="comment"># 对应的版本</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">master</span>    <span class="comment"># 构建的分支</span></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line"><span class="attr">  directories:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">node_modules</span> <span class="comment"># 依赖缓存的目录</span></span><br><span class="line"><span class="attr">before_install:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">export</span> <span class="string">TZ='Asia/Shanghai'</span>  <span class="comment"># 设置时区</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">npm</span> <span class="string">install</span> <span class="bullet">-g</span> <span class="string">gitbook-cli</span> <span class="comment"># 安装编译工具</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">gitbook</span> <span class="string">build</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  provider:</span> <span class="string">pages</span></span><br><span class="line"><span class="attr">  skip-cleanup:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  github-token:</span> <span class="string">$GITHUB_TOKEN</span> <span class="comment"># github 上的token环境变量</span></span><br><span class="line"><span class="attr">  local-dir:</span> <span class="string">./_book/</span> <span class="comment">## 根据情况自定义到静态文件输出目录</span></span><br><span class="line"><span class="attr">  target-branch:</span> <span class="string">gh-pages</span></span><br><span class="line"><span class="attr">  verbose:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  on:</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<h5 id="测试">测试</h5>
+<p>在github page的项目里面修改一点东西，push到GitHub上去就会在travis上看到触发build。</p>
+<p><img src="http://cdn.hanyajun.com/travis_build.png" alt="image"></p>
+<p>大概等个2min你会发现你的github pages 已经更新了。<br></p>
 
+    <div id="aplayer-MGJnlAJI" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="002sun3u2HDgYl" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
                 
 
                 <hr>
@@ -279,9 +280,13 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/kubernetes/kubernetes_architecture/" data-toggle="tooltip" data-placement="top" title="kubernetes从入门到放弃--k8s基本架构">&larr; Previous Post</a>
+                            <a href="/tools/qrcode2console/" data-toggle="tooltip" data-placement="top" title="如何将链接生成二维码或者二维码图片输出到console？">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/kubernetes/kubernetes_kubeadm/" data-toggle="tooltip" data-placement="top" title="kubernetes从入门到放弃--使用kubeadm快速安装kubernetes">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -339,12 +344,18 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#kubernetes架构图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kubernetes&#x67B6;&#x6784;&#x56FE;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-cluster"><span class="toc-nav-number"></span> <span class="toc-nav-text">1. <strong>Cluster</strong></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-master"><span class="toc-nav-number"></span> <span class="toc-nav-text">2. <strong>Master</strong></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-node"><span class="toc-nav-number"></span> <span class="toc-nav-text">3. Node</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-pod"><span class="toc-nav-number"></span> <span class="toc-nav-text">4. Pod</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#5-controller"><span class="toc-nav-number"></span> <span class="toc-nav-text">5. Controller</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-service"><span class="toc-nav-number"></span> <span class="toc-nav-text">6. Service</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-namespace"><span class="toc-nav-number"></span> <span class="toc-nav-text">7. Namespace</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#github-pages"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Github Pages</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置travis-ci"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x914D;&#x7F6E;travis-ci</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#登录-travis"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">&#x767B;&#x5F55; travis</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#在travis-配置token环境变量"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">&#x5728;travis &#x914D;&#x7F6E;token&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#创建-配置文件"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">&#x521B;&#x5EFA; &#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#测试"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">&#x6D4B;&#x8BD5;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -364,7 +375,7 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                          <a class="tag" href="/tags/#devops" title="devops">devops</a>
                         
                     </div>
                 </section>

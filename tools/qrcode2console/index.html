@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          kubernetes从入门到放弃--k8s基本概念 - 朗月清风
+          如何将链接生成二维码或者二维码图片输出到console？ - 朗月清风
         
     </title>
 
-    <link rel="canonical" href="https://hanyajun.com/kubernetes/kubenetes_concept/">
+    <link rel="canonical" href="https://hanyajun.com/tools/qrcode2console/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -66,6 +66,9 @@
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 
@@ -76,7 +79,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('http://cdn.hanyajun.com/k8s_bg.jpg')
+            background-image: url('/img/article_header/article_bg.jpg')
             /*post*/
         
     }
@@ -93,11 +96,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                              <a class="tag" href="/tags/#tools" title="tools">tools</a>
                             
                         </div>
-                        <h1>kubernetes从入门到放弃--k8s基本概念</h1>
-                        <h2 class="subheading">kubernetes基本概念</h2>
+                        <h1>如何将链接生成二维码或者二维码图片输出到console？</h1>
+                        <h2 class="subheading">qrcode2console</h2>
 
                         <!--文章访问量统计-->
                         
@@ -107,7 +110,7 @@
 
                         <span class="meta">
                             Posted by 韩亚军 on
-                            2019-04-18
+                            2019-05-08
                         </span>
                     </div>
                 
@@ -238,40 +241,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="kubernetes架构图">kubernetes架构图</h4>
-<p>下图为kubernetes的master架构图<br>
-<img src="https://jimmysong.io/kubernetes-handbook/images/kubernetes-high-level-component-archtecture.jpg" alt="image"></p>
-<h3 id="1-cluster">1. <strong>Cluster</strong></h3>
-<p>cluster是计算、存储和网络资源的集合，kubernetes利用这些资源运行各种基于容器的应用。</p>
-<h3 id="2-master">2. <strong>Master</strong></h3>
-<p>Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用放在哪里运行。master运行linux操作系统，可以是物理机或者虚拟机。为了实现高可用，可以运行多个Master。</p>
-<h3 id="3-node">3. Node</h3>
-<p>Node 的职责是运行容器应用。Node由Master管理，Node负责监控并汇报容器的状态，同时根据Master的要求管理容器的生命周期。Node运行在linux系统上，可以是物理机或者虚拟机。</p>
-<h3 id="4-pod">4. Pod</h3>
-<p>Pod是kubernetes的最小工作单元。每个pod可以包含一个或者多个容器。Pod中的容器会作为一个整体被Master调度到一个Node上运行。kubernetes 以<strong>Pod</strong>为最小单位进行调度、扩展、共享资源、管理生命周期；pod中的所有容器都共享一个网络namespace，所有的容器可以共享存储。</p>
-<ul>
-<li>pod有两种使用方式：</li>
-</ul>
-<ol>
-<li>运行单一容器：<br><br>
-one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是将单个容器简单封装成pod。即使只有一个容器，kubernetes管理的也是pod而不是直接管理容器。</li>
-<li>运行多个容器:<br><br>
-运行在同一个pod的的多个容器必须联系紧密，而且直接共享资源。</li>
-</ol>
-<h3 id="5-controller">5. Controller</h3>
-<p>kubernetes通常不会直接去创建pod，而是通过Controller去管理pod的，Controller中定义了Pod的部署特性，比如有几个副本、什么样的Node上运行等。为了满足不同的业务场景，kubernetes提供了多种Controller，包括Deployment、ReplicaSet、DeamonSet、StatefuleSet、Job等，我们逐一讨论。</p>
-<ul>
-<li>Deployment :是最常用的的Controller，deployment可以管理pod的多个副本，并确保pod按照预期的状态来运行。</li>
-<li>ReplicaSet : 实现了pod的多副本管理。使用Deployment时会自动创建Replicaset。</li>
-<li>DeamonSet: 用于每个Node最多只能运行一个Pod副本的场景。</li>
-<li>StatefuleSet:能够保证Pod的每个副本在整个生命周期中名称是不变的，而其它Controller是提供这个功能。当某个Pod发生故障需要删除并且重新启动时，Pod的名称会发生变化，同时StatefuleSet会保证副本按照固定的顺序启动、更新或者删除。</li>
-<li>Job 用于运行就删除的应用，而其他Controller　中的ｐｏｄ通常是持续运行的。</li>
-</ul>
-<h3 id="6-service">6. Service</h3>
-<p>Deployment 可以部署多个副本，每个Pod都有自己的Ip，那么外界如何访问这些副本呢？Kubernetes Service 定义了外界访问一组特定Pod的方式。Service 有自己的IP和端口，Service为pod提供了负载均衡。K8s运行容器Pod与访问容器Pod这两项任务分别由Controller和Service执行。</p>
-<h3 id="7-namespace">7. Namespace</h3>
-<p>如果有多个用户或者项目组共同使用k8s 集群，如果将他们创建的Pod等资源分开呢，就是通过Namespace进行隔离。</p>
+                <h3 id="qrcode2console-github地址">qrcode2console   <a href="https://github.com/Han-Ya-Jun/qrcode2console" target="_blank" rel="noopener">github地址</a></h3>
+<p>链接生成二维码输出到console或者是二维码图片输出到console</p>
+<h3 id="安装">安装</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get -u github.com/Han-Ya-Jun/qrcode2console</span><br></pre></td></tr></table></figure>
+<h3 id="示例">示例</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestNewQRCode2ConsoleWithUrl</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	qr := NewQRCode2ConsoleWithUrl(<span class="string">"https://hanyajun.com"</span>, <span class="literal">true</span>)</span><br><span class="line">	<span class="comment">//qr.Debug()</span></span><br><span class="line">	qr.Output()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestNewQRCode2ConsoleWithPath</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	qr := NewQRCode2ConsoleWithPath(<span class="string">"qrcode.jpg"</span>)</span><br><span class="line">	<span class="comment">//qr.Debug()</span></span><br><span class="line">	qr.Output()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果">效果</h3>
+<p><img src="https://github.com/Han-Ya-Jun/qrcode2console/blob/master/case1.png?raw=true" alt="image"><br>
+<img src="https://github.com/Han-Ya-Jun/qrcode2console/blob/master/case2.png?raw=true" alt="image"></p>
 
+    <div id="aplayer-gInthQaX" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="000bzSQE1IZOXJ" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
                 
 
                 <hr>
@@ -279,9 +259,13 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/kubernetes/kubernetes_architecture/" data-toggle="tooltip" data-placement="top" title="kubernetes从入门到放弃--k8s基本架构">&larr; Previous Post</a>
+                            <a href="/tools/gocn_news_push/" data-toggle="tooltip" data-placement="top" title="爬取GoCn每日新闻并推送到微信/邮箱">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/devops/travis-ci/" data-toggle="tooltip" data-placement="top" title="如何使用travis-ci自动化构建部署GitHub Pages（gitbook）">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -339,12 +323,18 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#kubernetes架构图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kubernetes&#x67B6;&#x6784;&#x56FE;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-cluster"><span class="toc-nav-number"></span> <span class="toc-nav-text">1. <strong>Cluster</strong></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-master"><span class="toc-nav-number"></span> <span class="toc-nav-text">2. <strong>Master</strong></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-node"><span class="toc-nav-number"></span> <span class="toc-nav-text">3. Node</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-pod"><span class="toc-nav-number"></span> <span class="toc-nav-text">4. Pod</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#5-controller"><span class="toc-nav-number"></span> <span class="toc-nav-text">5. Controller</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-service"><span class="toc-nav-number"></span> <span class="toc-nav-text">6. Service</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-namespace"><span class="toc-nav-number"></span> <span class="toc-nav-text">7. Namespace</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#qrcode2console-github地址"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">qrcode2console   <a href="https://github.com/Han-Ya-Jun/qrcode2console" target="_blank" rel="noopener">github&#x5730;&#x5740;</a></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#示例"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x793A;&#x4F8B;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#效果"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x6548;&#x679C;</span></a></li></ol>
         
         </div>
       </aside>
@@ -364,7 +354,7 @@ one-container-per-Pod 是kubernetes最常见的模型，这种情况下，只是
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                          <a class="tag" href="/tags/#tools" title="tools">tools</a>
                         
                     </div>
                 </section>

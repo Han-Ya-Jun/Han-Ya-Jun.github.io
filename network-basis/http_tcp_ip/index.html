@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一份耕耘，一份收获">
+    <meta name="keyword"  content="朗月清风,韩亚军">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          《图解http》阅读笔记--web及网络基础 - 朗月清风
+        
+    </title>
+
+    <link rel="canonical" href="https://hanyajun.com/network-basis/http_tcp_ip/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    <!--不蒜子-->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('http://cdn.hanyajun.com/20190512_194215_seaview.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#网络基础" title="网络基础">网络基础</a>
+                            
+                        </div>
+                        <h1>《图解http》阅读笔记--web及网络基础</h1>
+                        <h2 class="subheading">web及网络基础</h2>
+
+                        <!--文章访问量统计-->
+                        
+                            <span id="busuanzi_container_page_pv">本文已被阅读过<span id="busuanzi_value_page_pv"></span>次</span>
+                        
+                        <!--文章访问量统计-->
+
+                        <span class="meta">
+                            Posted by 韩亚军 on
+                            2019-05-12
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">韩亚军</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        <li>
+                            <a href="/about/" >About</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives/" >Archives</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/tags/" >Tags</a>
+                        </li>
+                    
+
+                    <!-- 
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                     -->
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="网络基础-tcp-ip">网络基础 TCP / IP</h2>
+<p>通常使用的网络（包括互联网）是在 TCP / IP 协议族的基础上运作的，而 HTTP 属于它内部的一个子集。Web 使用一种名为 HTTP（HyperText Transfer Protocol，超文本传输协议）的协议作为规范，完成从客户端（指通过发送请求获取服务器资源的 Web 浏览器等）到服务器端等一系列运作流程，而协议是指规则的约定。可以说，Web 是建立在 HTTP 协议上通信的。</p>
+<h3 id="协议">协议</h3>
+<p>计算机与网络设备要相互通信，双方就必须基于相同的方法。比如，探测到通信目标、由哪一边先发起通信、使用哪种语言进行通信、怎样结束通信等规则都需要事先确定。不同的硬件、操作系统之间的通信，所有的这一切都需要一种规则，而我们就把这种规则称为协议。<br></p>
+<h3 id="tcp-ip-协议族">TCP / IP 协议族</h3>
+<p>像这样把与互联网相关联的协议集合起来总称为 TCP / IP，如 HTTP、FTP、DNS、TCP 都为 TCP / IP 协议集合下的协议。<br><br>
+<img src="http://cdn.hanyajun.com/20190512_174651_tcp_ip.png" alt=""></p>
+<h3 id="osi与tcpip分层模型">OSI与TCP/IP分层模型</h3>
+<p><img src="http://cdn.hanyajun.com/20190512_174651_TCPIP-OSI.png" alt=""></p>
+<p>TCP / IP 协议族里最重要的一点就是分层，分层的好处是只需把各层之间的接口部分规划好，每个层次的内部设计就能自由改动，而不会影响到整体。TCP / IP 协议族按层次分别为以下四层：</p>
+<ul>
+<li><strong>应用层，决定了向用户提供应用服务时通信的活动。</strong> TCP / IP 协议族内预存了各类通用的应用服务，比如，FTP（File Transfer Protocol，文件传输协议）和 DNS（Domain Name System，域名系统）服务就是其中两类，HTTP 协议也处于该层；</li>
+<li><strong>传输层，对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</strong> 在传输层有两个性质不同的协议：TCP（Transmission Control Protocol，传输控制协议）和 UDP（User Data Protocol，用户数据报协议）；</li>
+<li><strong>网络层（又名网络互连层），用来处理在网络上流动的数据包。</strong> 数据包是网络传输的最小数据单位，该层规定了通过怎样的路径（所谓的传输路线）到达对象计算机，并把数据包传送给对方。与对方计算机之间通过多台计算机或网络设备进行传输时，网络层起的作用就是在众多的选项内选择一条传输路线；</li>
+<li><strong>数据链路层（又名数据链路层，网络接口层），用来处理连接网络的硬件部分.</strong> 包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</li>
+</ul>
+<h4 id="tcp-ip-通信传输流">TCP / IP 通信传输流</h4>
+<p><img src="http://cdn.hanyajun.com/20190512_183638_chapter_1_p1.png" alt=""></p>
+<p>利用 TCP / IP 协议族进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。举例用 HTTP 来说明：</p>
+<ol>
+<li>首先作为发送端的客户端在应用层（HTTP 协议）发出一个想看某个 Web 页面的 HTTP 请求；</li>
+<li>接着，为了传输方便，在传输层（TCP 协议）把从应用层处收到的数据（HTTP 请求报文）进行分割，并在各个报文上打上标记序号及端口号后转发给网络层；</li>
+<li>在网络层（IP 协议），增加作为通信目的地的 MAC 地址后转发给链路层；</li>
+<li>这样一来，发往网络的通信请求就准备齐全了。接收端的服务器在链路层接收到数据，按序往上层发送，一直到应用层。当传输到应用层，才能算真正接收到由客户端发送过来的 HTTP请求。</li>
+</ol>
+<p><img src="http://cdn.hanyajun.com/20190512_183639_chapter_1_p2.png" alt=""></p>
+<p>发送端在层与层之间传输数据时，每经过一层时必定会被打上一个该层所属的首部信息。反之，接收端在层与层传输数据时，每经过一层时会把对应的首部消去。这种把数据信息包装起来的做法称为封装（encapsulate）。</p>
+<h4 id="osi参考模型分层说明">OSI参考模型分层说明</h4>
+<p><img src="http://cdn.hanyajun.com/20190512_182904_osi.png" alt=""></p>
+<h4 id="osi参考模型通信过程">OSI参考模型通信过程</h4>
+<p><img src="http://cdn.hanyajun.com/20190512_183646_OSI.png" alt=""></p>
+<ul>
+<li>1、打包数据时，每一层在处理上一层传过来的数据时，会在数据上附上当前层的首部信息后传给下一层；</li>
+<li>2、解包数据时，每一层在处理下一层传过来的数据时，会将当前层的首部信息与数据分开，将数据传给上一层。</li>
+<li>3、数据通信过程:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分层</th>
+<th>每层的操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>在数据前面加首部，首部包括数据内容、源地址和目标地址，同时也会处理异常的反馈信息。</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>将特有的数据格式转换为通用的数据格式，同时也会加上表示层的首部信息以供解析。</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>对何时连接，以何种方式连接，连接多久，何时断开等做记录。同时也会加会话层的首部信息。</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>建立连接，断开连接，确认数据是否发送成功和执行失败重发任务。</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>负责将数据发到目标地址，也包含首部信息。</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>通过物理的传输介质实现数据的传输。</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>将0/1转换成物理的传输介质，通过MAC地址进行传输。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="与-http-关系密切的协议-ip-tcp-和-dns">与 HTTP 关系密切的协议 : IP、TCP 和 DNS</h3>
+<ul>
+<li><strong>负责传输的 IP 协议，通过 IP 地址和 MAC 地址将数据送往对方。</strong> 按层次分，IP（Internet Protocol）网际协议位于网络层。TCP / IP 协议族中的 IP 指的是网际协议，是一种协议的名称。IP 协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两个重要的条件是 IP 地址和 MAC 地址（Media Access Control Address）。IP 地址指明了节点被分配到的地址，MAC 地址是指网卡所属的固定地址。IP 地址可以和 MAC 地址进行配对。IP 地址可变换，但 MAC 地址基本上不会更改。在网络上，通信的双方通常是经过多台计算机和网络设备中转才能连接到对方。而在进行中转时，会利用下一站中转设备的 MAC 地址来搜索下一个中转目标。这时，会采用 ARP 协议（Address Resolution Protocol），一种用以解析地址的协议，根据通信方的 IP 地址就可以反查出对应的 MAC 地址。在到达通信目标前的中转过程中，那些计算机和路由器等网络设备只能获悉很粗略的传输路线，这种机制称为路由选择（routing）；</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/20190512_183640_chapter_1_p3.png" alt=""></p>
+<ul>
+<li><strong>确保可靠性的 TCP 协议，使用了三次握手策略确保数据发送成功。</strong> 按层次分，TCP 位于传输层，提供可靠的字节流服务。所谓的字节流服务（Byte Stream Service）是指，为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理。而可靠的传输服务是指，能够把数据准确可靠地传给对方。即 TCP 协议为了更容易传送大数据才把数据分割，而且 TCP 协议采用三次握手策略。</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/20190512_183641_chapter_1_p4.png" alt=""><br>
+<img src="http://cdn.hanyajun.com/20190512_185153_4_http_handshake.jfif" alt=""><br>
+<strong>简单示意图：</strong></p>
+<ol>
+<li>客户端–发送带有 SYN 标志的数据包–一次握手–服务端</li>
+<li>服务端–发送带有 SYN/ACK 标志的数据包–二次握手–客户端</li>
+<li>客户端–发送带有带有 ACK 标志的数据包–三次握手–服务端</li>
+</ol>
+<ul>
+<li><strong>四次挥手</strong><br>
+<img src="http://cdn.hanyajun.com/20190512_191420_4_time_wave.jfif" alt=""><br>
+断开一个 TCP 连接则需要“四次挥手”：</li>
+</ul>
+<ol>
+<li>客户端-发送一个 FIN，用来关闭客户端到服务器的数据传送</li>
+<li>服务器-收到这个 FIN，它发回一 个 ACK，确认序号为收到的序号加1 。和 SYN 一样，一个 FIN 将占用一个序号</li>
+<li>服务器-关闭与客户端的连接，发送一个FIN给客户端</li>
+<li>客户端-发回 ACK 报文确认，并将确认序号设置为收到序号加1</li>
+</ol>
+<ul>
+<li><strong>负责域名解析的 DNS 服务，提供域名到 IP 地址之间的解析服务。</strong> DNS（Domain Name System）服务是和 HTTP 协议一样位于应用层的协议，它提供域名到 IP 地址之间的解析服务。计算机既可以被赋予 IP 地址，也可以被赋予主机名和域名。用户通常使用主机名或域名来访问对方的计算机，DNS 协议提供通过域名查找 IP 地址，发送给计算机的是 IP 地址。计算机可通过 DNS 协议的逆向从 IP 地址反查域名。</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/20190512_183642_chapter_1_p5.png" alt=""></p>
+<h3 id="概括下请求响应的流程">概括下请求响应的流程：</h3>
+<ol>
+<li>客户端发起请求，想访问某个主机名或域名；</li>
+<li>DNS 协议对主机名或域名进行解析，得到 IP 地址；</li>
+<li>HTTP 协议将请求报文分割成多个报文段来发送；</li>
+<li>IP 协议通过 IP 地址和 MAC 地址将数据送往对方；</li>
+<li>TCP 协议使用三次握手策略确保数据发送成功，按序号以原来的顺序重组请求报文；</li>
+<li>服务端获得请求报文，进行处理，处理结果同样使用 TCP / IP 协议进行回传。</li>
+</ol>
+<p><img src="http://cdn.hanyajun.com/20190512_183643_chapter_1_p6.png" alt=""></p>
+<h3 id="uri-和-url">URI 和 URL</h3>
+<p>URL（Uniform Resource Locator，统一资源定位符），使用 Web 浏览器等访问 Web 页面时需要输入的网页地址，比如 <a href="https://www.google.com/" target="_blank" rel="noopener">https://www.google.com/</a> 。URI 是 Uniform Resource Identifier 的缩写，这三个单词分别表示：</p>
+<ul>
+<li>Uniform，规定统一的格式可方便处理多种不同类型的资源，而不用根据上下文环境来识别资源指定的访问方式。另外，加入新增的协议方案（如 http: 或 ftp:）也更容易；</li>
+<li>Resource，资源的定义是“可标识的任何东西”。除了文档文件、图像或服务（例如当天的天气预报）等能够区别于其他类型的，全都可作为资源。另外，资源不仅可以是单一的，也可以是多数的集合体；</li>
+<li>Identifier，表示可标识的对象。也称为标识符；</li>
+</ul>
+<p>综上所述，URI 就是由某个协议方案表示的资源的定位标识符。协议方案是指访问资源所使用的协议类型名称。采用 HTTP 协议时，协议方案就是 http。URI 用字符串标识某一互联网资源，而 URL表示资源的地点（互联网上所处的位置），可见 URL是 URI 的子集。</p>
+<h4 id="绝对uri-格式">绝对URI 格式</h4>
+<p>以 “<a href="http://user:pass@www.example.jp:80/dir/index.html?uid=1#ch1%E2%80%9D" target="_blank" rel="noopener">http://user:pass@www.example.jp:80/dir/index.html?uid=1#ch1”</a> 为例：</p>
+<ul>
+<li>“http://” ，协议方案名。使用 http: 或 https: 等协议方案名获取访问资源时要指定协议类型。不区分字母大小写，最后附一个冒号（:）。也可使用 data: 或 javascript: 这类指定数据或脚本程序的方案名；</li>
+<li>“user:pass” ，登录信息（认证）。指定用户名和密码作为从服务器端获取资源时必要的登录信息（身份认证），此项是可选项；</li>
+<li>“<a href="http://www.example.jp" target="_blank" rel="noopener">www.example.jp</a>” ，服务器地址。使用绝对 URI 必须指定待访问的服务器地址。地址可以是类似 <a href="http://hackr.jp" target="_blank" rel="noopener">hackr.jp</a> 这种 DNS 可解析的名称，或是 192.168.1.1 这类 IPv4 地址名，还可以是 [0:0:0:0:0:0:0:1] 这样用方括号括起来的 IPv6 地址名；</li>
+<li>“80”，服务器端口号。指定服务器连接的网络端口号。此项也是可选项，若用户省略则自动使用默认端口号；</li>
+<li>“dir/index.html”，带层次的文件路径。指定服务器上的文件路径来定位特指的资源。这与 UNIX 系统的文件目录结构相似；</li>
+<li>“uid=1”，查询字符串。针对已指定的文件路径内的资源，可以使用查询字符串传入任意参数，此项可选；</li>
+<li>“ch1”，使用片段标识符通常可标记出已获取资源中的子资源（文档内的某个位置）。但在 RFC 中并没有明确规定其使用方法，该项也为可选项。</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/20190512_183646_chapter_1_p7.png" alt=""></p>
+<h4 id="常见的面试题">常见的面试题</h4>
+<h4 id="tcp三次握手">TCP三次握手</h4>
+<p><img src="http://cdn.hanyajun.com/20190512_190514_3_http_wave.png" alt=""></p>
+<h5 id="为什么要三次握手">为什么要三次握手？</h5>
+<p>三次握手的目的是建立可靠的通信信道，说到通讯，简单来说就是数据的发送与接收，而三次握手最主要的目的就是双方确认自己与对方的发送与接收是正常的。</p>
+<ul>
+<li>第一次握手：Client 什么都不能确认；Server 确认了对方发送正常</li>
+<li>第二次握手：Client 确认了：自己发送、接收正常，对方发送、接收正常；Server 确认了：自己接收正常，对方发送正常</li>
+<li>第三次握手：Client 确认了：自己发送、接收正常，对方发送、接收正常；Server 确认了：自己发送、接收正常，对方发送、接收正常</li>
+</ul>
+<p>所以三次握手就能确认双发收发功能都正常，缺一不可。、</p>
+<h5 id="为什么要传回-syn">为什么要传回 SYN?</h5>
+<p>接收端传回发送端所发送的 SYN 是为了告诉发送端，我接收到的信息确实就是你所发送的信号了。<br>
+SYN 是 TCP/IP 建立连接时使用的握手信号。在客户机和服务器之间建立正常的 TCP 网络连接时，客户机首先发出一个 SYN 消息，服务器使用 SYN-ACK 应答表示接收到了这个消息，最后客户机再以 ACK(Acknowledgement[汉译：确认字符 ,在数据通信传输中，接收站发给发送站的一种传输控制字符。它表示确认发来的数据已经接受无误。 ]）消息响应。这样在客户机和服务器之间才能建立起可靠的TCP连接，数据才可以在客户机和服务器之间传递。</p>
+<h5 id="为什么tcp客户端最后还要发送一次确认呢">为什么TCP客户端最后还要发送一次确认呢？</h5>
+<p>一句话，主要防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误。</p>
+<ul>
+<li>如果使用的是两次握手建立连接，假设有这样一种场景，客户端发送了第一个请求连接并且没有丢失，只是因为在网络结点中滞留的时间太长了，由于TCP的客户端迟迟没有收到确认报文，以为服务器没有收到，此时重新向服务器发送这条报文，此后客户端和服务器经过两次握手完成连接，传输数据，然后关闭连接。此时此前滞留的那一次请求连接，网络通畅了到达了服务器，这个报文本该是失效的，但是，两次握手的机制将会让客户端和服务器再次建立连接，这将导致不必要的错误和资源的浪费。</li>
+<li>如果采用的是三次握手，就算是那一次失效的报文传送过来了，服务端接受到了那条失效报文并且回复了确认报文，但是客户端不会再次发出确认。由于服务器收不到确认，就知道客户端并没有请求连接。</li>
+</ul>
+<h4 id="四次挥手">四次挥手</h4>
+<p><img src="http://cdn.hanyajun.com/20190512_190514_4_http_wave.png" alt=""></p>
+<h5 id="为什么要四次挥手">为什么要四次挥手?</h5>
+<p>任何一方都可以在数据传送结束后发出连接释放的通知，待对方确认后进入半关闭状态。当另一方也没有数据再发送的时候，则发出连接释放通知，对方确认后就完全关闭了TCP连接。</p>
+<p>举个例子：A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可能还会有要说的话，A 不能要求 B 跟着自己的节奏结束通话，于是 B 可能又巴拉巴拉说了一通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束。</p>
+<h5 id="为什么客户端最后还要等待2msl">为什么客户端最后还要等待2MSL？</h5>
+<p>MSL（Maximum Segment Lifetime），TCP允许不同的实现可以设置不同的MSL值。</p>
+<ol>
+<li>第一，保证客户端发送的最后一个ACK报文能够到达服务器，因为这个ACK报文可能丢失，站在服务器的角度看来，我已经发送了FIN+ACK报文请求断开了，客户端还没有给我回应，应该是我发送的请求断开报文它没有收到，于是服务器又会重新发送一次，而客户端就能在这个2MSL时间段内收到这个重传的报文，接着给出回应报文，并且会重启2MSL计时器。</li>
+</ol>
+<ol start="2">
+<li>第二，防止类似与“三次握手”中提到了的“已经失效的连接请求报文段”出现在本连接中。客户端发送完最后一个确认报文后，在这个2MSL时间中，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失。这样新的连接中不会出现旧连接的请求报文。</li>
+</ol>
+<h5 id="为什么建立连接是三次握手关闭连接确是四次挥手呢">为什么建立连接是三次握手，关闭连接确是四次挥手呢？</h5>
+<p>建立连接的时候， 服务器在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。<br>
+而关闭连接时，服务器收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，而自己也未必全部数据都发送给对方了，所以己方可以立即关闭，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送，从而导致多了一次。</p>
+<h4 id="参考文章">参考文章：</h4>
+<ul>
+<li>《图解http》</li>
+<li><a href="https://blog.csdn.net/qzcsu/article/details/72861891" target="_blank" rel="noopener">https://blog.csdn.net/qzcsu/article/details/72861891</a></li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/tools/gocn_news_push/" data-toggle="tooltip" data-placement="top" title="爬取GoCn每日新闻并推送到微信/邮箱">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                    <div class="reward">
+                        <div class="reward-button">赏 <span class="reward-code"> 
+                            <span class="alipay-code"> <img class="alipay-img" src="http://cdn.hanyajun.com/alipay.jpg"><b>支付宝打赏</b></span> 
+                            <span class="wechat-code"> <img class="wechat-img" src="http://cdn.hanyajun.com/wepay.png"><b>微信打赏</b> </span>
+                            </span></div>
+                        <p class="reward-notice">坚持原创技术分享，您的支持将鼓励我继续创作！</p>
+                    </div>
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+                    <!-- disqus 评论框 start -->
+                    <div class="comment">
+                        <div id="lv-container" data-id="city" data-uid="MTAyMC80MzgyNi8yMDM2MQ"></div>
+                    </div>
+                    <!-- disqus 评论框 end -->
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#网络基础-tcp-ip"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x7F51;&#x7EDC;&#x57FA;&#x7840; TCP / IP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#协议"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x534F;&#x8BAE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tcp-ip-协议族"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">TCP / IP &#x534F;&#x8BAE;&#x65CF;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#osi与tcpip分层模型"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">OSI&#x4E0E;TCP/IP&#x5206;&#x5C42;&#x6A21;&#x578B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#tcp-ip-通信传输流"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">TCP / IP &#x901A;&#x4FE1;&#x4F20;&#x8F93;&#x6D41;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#osi参考模型分层说明"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">OSI&#x53C2;&#x8003;&#x6A21;&#x578B;&#x5206;&#x5C42;&#x8BF4;&#x660E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#osi参考模型通信过程"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">OSI&#x53C2;&#x8003;&#x6A21;&#x578B;&#x901A;&#x4FE1;&#x8FC7;&#x7A0B;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#与-http-关系密切的协议-ip-tcp-和-dns"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x4E0E; HTTP &#x5173;&#x7CFB;&#x5BC6;&#x5207;&#x7684;&#x534F;&#x8BAE; : IP&#x3001;TCP &#x548C; DNS</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#概括下请求响应的流程"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x6982;&#x62EC;&#x4E0B;&#x8BF7;&#x6C42;&#x54CD;&#x5E94;&#x7684;&#x6D41;&#x7A0B;&#xFF1A;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#uri-和-url"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">URI &#x548C; URL</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#绝对uri-格式"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">&#x7EDD;&#x5BF9;URI &#x683C;&#x5F0F;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#常见的面试题"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">&#x5E38;&#x89C1;&#x7684;&#x9762;&#x8BD5;&#x9898;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#tcp三次握手"><span class="toc-nav-number">1.6.3.</span> <span class="toc-nav-text">TCP&#x4E09;&#x6B21;&#x63E1;&#x624B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#为什么要三次握手"><span class="toc-nav-number">1.6.3.1.</span> <span class="toc-nav-text">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#xFF1F;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#为什么要传回-syn"><span class="toc-nav-number">1.6.3.2.</span> <span class="toc-nav-text">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F20;&#x56DE; SYN?</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#为什么tcp客户端最后还要发送一次确认呢"><span class="toc-nav-number">1.6.3.3.</span> <span class="toc-nav-text">&#x4E3A;&#x4EC0;&#x4E48;TCP&#x5BA2;&#x6237;&#x7AEF;&#x6700;&#x540E;&#x8FD8;&#x8981;&#x53D1;&#x9001;&#x4E00;&#x6B21;&#x786E;&#x8BA4;&#x5462;&#xFF1F;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四次挥手"><span class="toc-nav-number">1.6.4.</span> <span class="toc-nav-text">&#x56DB;&#x6B21;&#x6325;&#x624B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#为什么要四次挥手"><span class="toc-nav-number">1.6.4.1.</span> <span class="toc-nav-text">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x56DB;&#x6B21;&#x6325;&#x624B;?</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#为什么客户端最后还要等待2msl"><span class="toc-nav-number">1.6.4.2.</span> <span class="toc-nav-text">&#x4E3A;&#x4EC0;&#x4E48;&#x5BA2;&#x6237;&#x7AEF;&#x6700;&#x540E;&#x8FD8;&#x8981;&#x7B49;&#x5F85;2MSL&#xFF1F;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#为什么建立连接是三次握手关闭连接确是四次挥手呢"><span class="toc-nav-number">1.6.4.3.</span> <span class="toc-nav-text">&#x4E3A;&#x4EC0;&#x4E48;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x662F;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#xFF0C;&#x5173;&#x95ED;&#x8FDE;&#x63A5;&#x786E;&#x662F;&#x56DB;&#x6B21;&#x6325;&#x624B;&#x5462;&#xFF1F;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#参考文章"><span class="toc-nav-number">1.6.5.</span> <span class="toc-nav-text">&#x53C2;&#x8003;&#x6587;&#x7AE0;&#xFF1A;</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#网络基础" title="网络基础">网络基础</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.csdn.net/hanyajun0123" target="_blank">CSDN Blog 韩亚军</a></li>
+                    
+                        <li><a href="https://hanyajun.com/golang-notes" target="_blank">golang学习笔记</a></li>
+                    
+                        <li><a href="https://hanyajun.com/coding_basis_review" target="_blank">编程基础复盘笔记</a></li>
+                    
+                        <li><a href="http://blog.didispace.com/" target="_blank">程序猿DD</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+    <!-- 来必力City版公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    <!-- 来必力City版 公共JS代码 end -->
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- 复制添加版权申明-->
+<script>
+    /**/
+    function setClipboardText(event){
+        event.preventDefault();//阻止元素发生默认的行为（例如，当点击提交按钮时阻止对表单的提交）。
+        var node = document.createElement('div');
+        //对documentfragment不熟，不知道怎么获取里面的内容，用了一个比较笨的方式
+        node.appendChild(window.getSelection().getRangeAt(0).cloneContents());
+        //getRangeAt(0)返回对基于零的数字索引与传递参数匹配的选择对象中的范围的引用。对于连续选择，参数应为零。
+        var htmlData = '<div>'
+            + node.innerHTML
+            + '<br /><br />著作权归作者所有。<br />'
+            + '商业转载请联系作者获得授权，非商业转载请注明出处。<br />'
+            + '作者：hanyajun <br />链接：'
+            + location.href
+            + '<br />来源：hanyajun.com<br /><br />'
+            + '</div>';
+        var textData = window.getSelection().getRangeAt(0)
+            + '\n\n著作权归作者所有。\n'
+            + '商业转载请联系作者获得授权，非商业转载请注明出处。\n'
+            + '作者：hanyajun\n'
+            + '链接：'
+            + location.href
+            + '来源：hanyajun.com\n\n';
+        if(event.clipboardData){
+            event.clipboardData.setData("text/html", htmlData);
+            //setData(剪贴板格式, 数据) 给剪贴板赋予指定格式的数据。返回 true 表示操作成功。
+            event.clipboardData.setData("text/plain",textData);
+        }
+        else if(window.clipboardData){ //window.clipboardData的作用是在页面上将需要的东西复制到剪贴板上，提供了对于预定义的剪贴板格式的访问，以便在编辑操作中使用。
+            return window.clipboardData.setData("text", textData);
+        }
+    };
+ 
+    document.addEventListener('copy',function(e){
+        setClipboardText(e);
+    });
+</script>
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Han-Ya-Jun" title="github">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href="https://blog.csdn.net/hanyajun0123" title="CSDN">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-csdn fa-stack-1x fa-inverse">C</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href="https://yq.aliyun.com/u/hanyajun" title="云栖社区">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-csdn fa-stack-1x fa-inverse">云</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href="https://www.jianshu.com/u/6540eee00b34" title="简书">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-csdn fa-stack-1x fa-inverse">简</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href=" mailto:hanyajun0123@163.com" title="mail">
+                            <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 韩亚军 2019 
+                    <br>
+                    Theme by <a href="http://www.huweihuang.com">胡伟煌</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://www.hanyajun.com">韩亚军</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=Han-Ya-Jun&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
+                    <br />
+                    <!--总访问量统计-->
+                    
+                        <span>
+                        <a target="_blank" href="http://www.beianbeian.com/beianxinxi/7625ff811d2421a06b38a23c0a085037.html"><img src="/img/upload/beian.png">粤ICP备17133239号-1</a>
+                        </span>
+                        <span id="busuanzi_container_site_pv" style="margin-left: 3px;">
+                            总访问量<span id="busuanzi_value_site_pv"></span>次
+                        </span>
+                    
+                    <!--总访问量统计-->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://hanyajun.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-138985430-1';
+    var _gaDomain = 'hanyajun.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'a79d548adc1c9b6a3d8b8ba1e8d0620c';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://hanyajun.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://www.hanyajun.com/">
+    <link rel="canonical" href="https://hanyajun.com/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -285,6 +285,172 @@ API Server提供HTTP......
 
 <div class="post-preview">
 
+    <a href="/network-basis/http_tcp_ip/">
+        <h2 class="post-title">
+            
+            《图解http》阅读笔记--web及网络基础
+        </h2>
+        <h3 class="post-subtitle">
+            web及网络基础
+        </h3>
+        <div class="post-content-preview">
+            网络基础 TCP / IP
+通常使用的网络（包括互联网）是在 TCP / IP 协议族的基础上运作的，而 HTTP 属于它内部的一个子集。Web 使用一种名为 HTTP（HyperText Transfer Protocol，超文本传输协议）的协议作为规范，完成从客户端（指通过发送请求获取服务器资源的 Web 浏览器等）到服务器端等一系列运作流程，而协议是指规则的约定。可以说，Web 是建立......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-05-12
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#网络基础" title="网络基础">网络基础</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/tools/gocn_news_push/">
+        <h2 class="post-title">
+            
+            爬取GoCn每日新闻并推送到微信/邮箱
+        </h2>
+        <h3 class="post-subtitle">
+            GoCn每日新闻每日推送
+        </h3>
+        <div class="post-content-preview">
+            爬取GoCn每日新闻并推送到微信/邮箱
+github: https://github.com/Han-Ya-Jun/news_watch_notice
+
+使用方法
+通过微信通知
+12docker run -v /etc/localtime:/etc/localtime:ro \-e NOTICE_WECHAT_USERS=特鲁尼克 hanyajun/news_watch_notice
+
+NO......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-05-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#tools" title="tools">tools</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/tools/qrcode2console/">
+        <h2 class="post-title">
+            
+            如何将链接生成二维码或者二维码图片输出到console？
+        </h2>
+        <h3 class="post-subtitle">
+            qrcode2console
+        </h3>
+        <div class="post-content-preview">
+            qrcode2console   github地址
+链接生成二维码输出到console或者是二维码图片输出到console
+安装
+1go get -u github.com/Han-Ya-Jun/qrcode2console
+示例
+1234567891011func TestNewQRCode2ConsoleWithUrl(t *testing.T) &#123;	qr := NewQRCo......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-05-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#tools" title="tools">tools</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/devops/travis-ci/">
+        <h2 class="post-title">
+            
+            如何使用travis-ci自动化构建部署GitHub Pages（gitbook）
+        </h2>
+        <h3 class="post-subtitle">
+            travis-ci
+        </h3>
+        <div class="post-content-preview">
+            Github Pages
+github pages可以当做你或者你的项目的 Websites，那么我们可以知道 GitHub Pages 有两种最基本的用法：
+
+作为你自己（或者组织）的网站或者博客（访问地址示例：http://username.github.io）
+作为你某一个项目的网站（访问地址示例：http://username.github.io/projectname）
+
+如果是第......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-04-26
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#devops" title="devops">devops</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/kubernetes/kubernetes_kubeadm/">
+        <h2 class="post-title">
+            
+            kubernetes从入门到放弃--使用kubeadm快速安装kubernetes
+        </h2>
+        <h3 class="post-subtitle">
+            使用kubeadm快速安装kubernetes
+        </h3>
+        <div class="post-content-preview">
+            kubeadm是Kubernetes官方提供的用于快速安装 Kubernetes
+集群的工具，通过将集群的各个组件进行容器化安装管理，通过kubeadm的方式安装集群比二进制的方式安装要方便不少，但是目录kubeadm还处于beta状态，还不能用于生产环境，Using kubeadm to Create a Cluster文档中已经说明kubeadm将会很快能够用于生产环境了。
+准备三台ce......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-04-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/life/rain_worry/">
         <h2 class="post-title">
             
@@ -390,11 +556,23 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
     <div class="tags">
         
             
-            <a href="/tags/#kubernetes" title="kubernetes" rel="2">kubernetes</a>
+            <a href="/tags/#tools" title="tools" rel="2">tools</a>
+            
+        
+            
+            <a href="/tags/#kubernetes" title="kubernetes" rel="3">kubernetes</a>
             
         
             
             <a href="/tags/#随笔" title="随笔" rel="1">随笔</a>
+            
+        
+            
+            <a href="/tags/#devops" title="devops" rel="1">devops</a>
+            
+        
+            
+            <a href="/tags/#网络基础" title="网络基础" rel="1">网络基础</a>
             
         
     </div>
@@ -495,15 +673,23 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
     <ul>
       
         <li>
-          <a href="/life/rain_worry/">夜雨思愁</a>
+          <a href="/network-basis/http_tcp_ip/">《图解http》阅读笔记--web及网络基础</a>
         </li>
       
         <li>
-          <a href="/kubernetes/kubernetes_architecture/">kubernetes从入门到放弃--k8s基本架构</a>
+          <a href="/tools/gocn_news_push/">爬取GoCn每日新闻并推送到微信/邮箱</a>
         </li>
       
         <li>
-          <a href="/kubernetes/kubenetes_concept/">kubernetes从入门到放弃--k8s基本概念</a>
+          <a href="/tools/qrcode2console/">如何将链接生成二维码或者二维码图片输出到console？</a>
+        </li>
+      
+        <li>
+          <a href="/devops/travis-ci/">如何使用travis-ci自动化构建部署GitHub Pages（gitbook）</a>
+        </li>
+      
+        <li>
+          <a href="/kubernetes/kubernetes_kubeadm/">kubernetes从入门到放弃--使用kubeadm快速安装kubernetes</a>
         </li>
       
     </ul>
@@ -519,7 +705,9 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
     
         <li><a href="https://blog.csdn.net/hanyajun0123" target="_blank">CSDN Blog 韩亚军</a></li>
     
-        <li><a href="https://www.huweihuang.com/" target="_blank">胡伟煌</a></li>
+        <li><a href="https://hanyajun.com/golang-notes" target="_blank">golang学习笔记</a></li>
+    
+        <li><a href="https://hanyajun.com/coding_basis_review" target="_blank">编程基础复盘笔记</a></li>
     
         <li><a href="http://blog.didispace.com/" target="_blank">程序猿DD</a></li>
     
@@ -530,7 +718,7 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">5</span></li></ul>
     </div>
 
         <hr>
@@ -690,7 +878,7 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://www.hanyajun.com/js/jquery.tagcloud.js",function(){
+        async("https://hanyajun.com/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -714,8 +902,8 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-XXXXXXXX-X';
-    var _gaDomain = 'yoursite';
+    var _gaId = 'UA-138985430-1';
+    var _gaDomain = 'hanyajun.com';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -755,7 +943,7 @@ Master 是Cluster的大脑，它的主要职能就是负责调度，决定应用
 	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
     <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
 <!-- Image to hack wechat -->
-<img src="http://www.hanyajun.com/img/icon_wechat.png" width="0" height="0" />
+<img src="https://hanyajun.com/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
 </body>
