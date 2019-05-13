@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hanyajun.com/golang/golang_introduction/</loc>
+    
+    <lastmod>2019-05-13T19:37:33.861Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hanyajun.com/network-basis/http_tcp_ip/</loc>
     
     <lastmod>2019-05-12T12:11:36.657Z</lastmod>

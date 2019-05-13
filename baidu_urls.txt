@@ -1,3 +1,4 @@
+https://hanyajun.com/golang/golang_introduction/
 https://hanyajun.com/network-basis/http_tcp_ip/
 https://hanyajun.com/tools/gocn_news_push/
 https://hanyajun.com/tools/qrcode2console/
