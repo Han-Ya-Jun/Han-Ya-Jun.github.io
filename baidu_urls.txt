@@ -1,3 +1,5 @@
+https://hanyajun.com/article/github_travis_ci/
+https://hanyajun.com/tools/windows_tree_skill/
 https://hanyajun.com/golang/golang_introduction/
 https://hanyajun.com/network-basis/http_tcp_ip/
 https://hanyajun.com/tools/gocn_news_push/
