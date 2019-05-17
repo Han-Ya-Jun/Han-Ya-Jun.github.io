@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          go复盘笔记--go语言介绍 - 朗月清风
+          基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署 - 朗月清风
         
     </title>
 
-    <link rel="canonical" href="https://hanyajun.com/golang/golang_introduction/">
+    <link rel="canonical" href="https://hanyajun.com/devops/gitbook_coding_ci/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -79,7 +79,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('http://cdn.hanyajun.com/20190514_012737_16288.jpg')
+            background-image: url('http://cdn.hanyajun.com/20190518_010025_20190321.jpg')
             /*post*/
         
     }
@@ -96,11 +96,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#golang" title="golang">golang</a>
+                              <a class="tag" href="/tags/#devops" title="devops">devops</a>
                             
                         </div>
-                        <h1>go复盘笔记--go语言介绍</h1>
-                        <h2 class="subheading">go语言介绍</h2>
+                        <h1>基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署</h1>
+                        <h2 class="subheading">Travis CI实现gitbook同步部署github和coding</h2>
 
                         <!--文章访问量统计-->
                         
@@ -110,7 +110,7 @@
 
                         <span class="meta">
                             Posted by 韩亚军 on
-                            2019-05-14
+                            2019-05-18
                         </span>
                     </div>
                 
@@ -241,148 +241,33 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="什么是go">什么是Go?</h4>
-<p>Go是一门并发支持 、垃圾回收的编译型系统编程语言，旨在创<br>
-造一门具有在静态编译语言的 高性能 和动态语言的 高效开发 之间拥有<br>
-良好平衡点的一门编程语言</p>
-<h4 id="go语言发展历史">Go语言发展历史</h4>
-<p>Go，全称golang，是Google开发的一种静态强类型、编译型、并发型并具有垃圾回收功能的编程语言。 Go从2007年末由Robert Griesemer、Rob Pike、Ken Thompson（C语言发明者）主持开发，于2009年11月正式宣布成为开放源代码项目，并在Linux及Mac OS X平台上进行了实现，后续增加了Windows平台的实现。2012年初，Go语言官方发布了Go 1.0稳定版本，目前Go语言基于1.x每半年发布一个版本。</p>
-<p><img src="http://cdn.hanyajun.com/20190513_234208_go_version.png" alt=""></p>
-<h4 id="语言特性">语言特性</h4>
-<ul>
-<li>静态类型和编译型</li>
-<li>原生的并发编程</li>
-<li>高效的垃圾回收机制</li>
-<li>快速编译和运行（同时解决C语言中头文件太多的问题）</li>
-<li>跨平台</li>
-<li>多编程范式：支持函数式编程，函数类型为第一类型，可以方便地传递和赋值。此外，还支持面向对象编程，有接口类型和实现类型的概念，但用嵌入替代了继承。</li>
-<li>丰富的标准库。</li>
-</ul>
-<h4 id="go语言优势">Go语言优势</h4>
-<ol>
-<li>脚本化的语法；开发效率高，容易上手</li>
-<li>静态类型+编译型，程序运行速度有保障；静态类型+编译型语言相对于动态类型+解释型语言的效率高</li>
-<li>原生的支持并发编程；降低开发、维护成本/程序可以更好的执行</li>
-<li>对于云原生支持比较好，容器化，微服务化比较容易。</li>
-</ol>
-<h4 id="go擅长领域">Go擅长领域</h4>
-<p>Go 语言被设计成一门应用于搭载 Web 服务器，存储集群或类似用途的巨型中央服务器的系统编程语言。<br>
-对于高性能分布式系统领域而言，Go语言无疑比大多数其它语言有着更高的开发效率。它提供了海量并行的支持，这对于游戏服务端的开发而言是再好不过了。</p>
-<p>Go语言主要用途如下：</p>
-<ol>
-<li>服务器编程，如处理日志、数据打包、虚拟机处理、文件系统等</li>
-<li>分布式系统，数据库代理器等</li>
-<li>网络编程，如Web应用、API应用、下载应用</li>
-<li>内存数据库，如groupcache、couchbase的部分组建</li>
-<li>云平台，目前国外很多云平台在采用Go开发，CloudFoundy的部分组建，前VMare的技术总监自己出来搞的apcera云平台。</li>
-</ol>
-<h4 id="go语言的缺点">GO语言的缺点</h4>
-<ol>
-<li>它不支持泛型，即使有很多关于它的讨论。可能也在议程当中，期待那一天的到来。</li>
-<li>使用这种编程语言分发的软件包非常有用，但Go在传统意义上并不是面向对象的。</li>
-<li>缺少一些库，尤其是UI工具包。</li>
-</ol>
-<h4 id="使用go语言开发的流行应用">使用Go语言开发的流行应用</h4>
-<ul>
-<li><a href="https://github.com/docker/docker-ce" target="_blank" rel="noopener">Docker</a>：一组用于部署Linux容器的工具</li>
-<li><a href="https://github.com/openshift/origin" target="_blank" rel="noopener">Openshift</a>：由Red Hat提供的云计算平台即服务。</li>
-<li><a href="https://github.com/kubernetes/kubernetes/" target="_blank" rel="noopener">Kubernetes</a>：无缝自动化部署流程的未来</li>
-<li><a href="https://github.com/pingcap/tidb" target="_blank" rel="noopener">Tidb</a>： 开源分布式关系型数据库。</li>
-<li><a href="https://github.com/influxdata/influxdb" target="_blank" rel="noopener">InfluxDB</a>：是由InfluxData开发的开源时间序列数据库。</li>
-<li><a href="https://github.com/etcd-io/etcd" target="_blank" rel="noopener">Etcd</a>：分布式的键值对数据存储系统，提供共享配置、服务的注册和发现。</li>
-</ul>
-<h4 id="使用go语言的公司">使用Go语言的公司</h4>
-<ul>
-<li><strong>Google</strong></li>
-<li><strong>Facebook</strong></li>
-<li><strong>腾讯</strong>（腾讯音乐）</li>
-<li><strong>百度</strong></li>
-<li><strong>蚂蚁金服</strong></li>
-<li><strong>京东</strong>（消息推送系统、云存储）</li>
-<li><strong>小米</strong>（<a href="http://open-falcon.com/%EF%BC%89%E5%B0%8F%E7%B1%B3%E4%BA%92%E5%A8%B1%E3%80%81%E5%B0%8F%E7%B1%B3%E5%95%86%E5%9F%8E%E3%80%81%E5%B0%8F%E7%B1%B3%E8%A7%86%E9%A2%91%E3%80%81%E5%B0%8F%E7%B1%B3%E7%94%9F%E6%80%81%E9%93%BE%E7%AD%89%E5%9B%A2%E9%98%9F%E9%83%BD%E5%9C%A8%E4%BD%BF%E7%94%A8Golang%E3%80%82" target="_blank" rel="noopener">http://open-falcon.com/）小米互娱、小米商城、小米视频、小米生态链等团队都在使用Golang。</a></li>
-<li><strong>七牛云</strong></li>
-<li><strong>bilibili</strong></li>
-<li><strong>今日头条</strong></li>
-<li><strong>美团</strong></li>
-<li><strong>滴滴</strong></li>
-<li><strong>快手</strong></li>
-<li><strong>英语流利说</strong></li>
-</ul>
-<h4 id="gopath">GOPATH</h4>
-<ol>
-<li><strong>src目录</strong>： 用于以代码包的显示组织并保存go源码文件。</li>
-<li><strong>pkg目录</strong>: 用于存放通过go install 安装后的代码包的归档文件。</li>
-<li><strong>bin目录</strong>: 与pkg相似，在通过go install 命令安装后生成的可执行文件。</li>
-</ol>
-<h4 id="包导入">包导入</h4>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(</span><br><span class="line">. <span class="string">"github.com/Han-Ya-Jun/***"</span></span><br><span class="line">_ <span class="string">"github.com/Han-Ya-Jun/***"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>.</strong> 导入表示我们不想加前缀而直接使用某个依赖包的程序实体。</li>
-<li><strong>_</strong> 这种导入表示我们只想初始化这个代码包，包初始化时会自动执行init（）方法，所有的代码包的初始化函数都会在main函数执行前，并且只会执行一次。</li>
-</ul>
-<h4 id="标准命令">标准命令</h4>
-<h5 id="go-build">go build</h5>
-<p>go build 命令主要是用于测试编译。在包的编译过程中，若有必要，会同时编译与之相关联的包。</p>
-<ul>
-<li>如果是普通包，当你执行go build命令后，不会产生任何文件。</li>
-<li>如果是main包，当只执行go build命令后，会在当前目录下生成一个可执行文件。如果需要在$GOPATH/bin木下生成相应的exe文件，需要执行go install 或者使用 go build -o 路径/a.exe。</li>
-<li>如果某个文件夹下有多个文件，而你只想编译其中某一个文件，可以在 go build 之后加上文件名，例如 go build a.go；go build 命令默认会编译当前目录下的所有go文件。</li>
-<li>你也可以指定编译输出的文件名。比如，我们可以指定go build -o myapp.exe，默认情况是你的package名(非main包)，或者是第一个源文件的文件名(main包)。</li>
-<li>go build 会忽略目录下以”_”或者”.”开头的go文件。</li>
-</ul>
-<p>如果你的源代码针对不同的操作系统需要不同的处理，那么你可以根据不同的操作系统后缀来命名文件。例如有一个读取数组的程序，它对于不同的操作系统可能有如下几个源文件：</p>
-<ul>
-<li>array_linux.go</li>
-<li>array_darwin.go</li>
-<li>array_windows.go</li>
-<li>array_freebsd.go</li>
-</ul>
-<p>go build的时候会选择性地编译以系统名结尾的文件（Linux、Darwin、Windows、Freebsd）。例如Linux系统下面编译只会选择array_linux.go文件，其它系统命名后缀文件全部忽略。</p>
-<hr>
-<h5 id="go-clean">go clean</h5>
-<p>go clean 命令是用来移除当前源码包里面编译生成的文件，这些文件包括</p>
-<ul>
-<li>_obj/ 旧的object目录，由Makefiles遗留</li>
-<li>_test/ 旧的test目录，由Makefiles遗留</li>
-<li>_testmain.go 旧的gotest文件，由Makefiles遗留</li>
-<li>test.out 旧的test记录，由Makefiles遗留</li>
-<li>build.out 旧的test记录，由Makefiles遗留</li>
-<li>*.[568ao] object文件，由Makefiles遗留</li>
-<li>DIR(.exe) 由 go build 产生</li>
-<li>DIR.test(.exe) 由 go test -c 产生</li>
-<li>MAINFILE(.exe) 由 go build MAINFILE.go产生</li>
-</ul>
-<hr>
-<h5 id="go-fmt">go fmt</h5>
-<p>go fmt 命令主要是用来帮你格式化所写好的代码文件。</p>
-<p>比如我们写了一个格式很糟糕的 test.go 文件，我们只需要使用 fmt go test.go 命令，就可以让go帮我们格式化我们的代码文件。但是我们一般很少使用这个命令，因为我们的开发工具一般都带有保存时自动格式化功能，这个功能底层其实就是调用了 go fmt 命令而已。</p>
-<p>使用go fmt命令，更多时候是用gofmt，而且需要参数-w，否则格式化结果不会写入文件。gofmt -w src，可以格式化整个项目。</p>
-<hr>
-<h5 id="go-get">go get</h5>
-<p>go get 命令主要是用来动态获取远程代码包的，目前支持的有BitBucket、GitHub、Google Code和Launchpad。这个命令在内部实际上分成了两步操作：第一步是下载源码包，第二步是执行go install。下载源码包的go工具会自动根据不同的域名调用不同的源码工具，对应关系如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BitBucket (Mercurial Git)</span><br><span class="line">GitHub (Git)</span><br><span class="line">Google Code Project Hosting (Git, Mercurial, Subversion)</span><br><span class="line">Launchpad (Bazaar)</span><br></pre></td></tr></table></figure>
-<p>所以为了go get 能正常工作，你必须确保安装了合适的源码管理工具，并同时把这些命令加入你的PATH中。其实go get支持自定义域名的功能，具体参见go help remote。<br>
-go get 命令本质上可以理解为：首先通过源码工具clone代码到src目录，然后执行go install。</p>
-<hr>
-<h5 id="go-install">go install</h5>
-<p>go install 命令在内部实际上分成了两步操作：第一步是生成结果文件(可执行文件或者.a包)，第二步会把编译好的结果移到 $GOPATH/pkg 或者$GOPATH/bin。</p>
-<p>.exe文件： 一般是 go install 带main函数的go文件产生的，有函数入口，所有可以直接运行。</p>
-<p>.a应用包： 一般是 go install 不包含main函数的go文件产生的，没有函数入口，只能被调用。</p>
-<hr>
-<h5 id="go-test">go test</h5>
-<p>go test 命令，会自动读取源码目录下面名为*_test.go的文件，生成并运行测试用的可执行文件。输出的信息类似</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ok   archive/tar   0.011s</span><br><span class="line">FAIL archive/zip   0.022s</span><br><span class="line">ok   compress/gzip 0.033s</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>默认的情况下，不需要任何的参数，它会自动把你源码包下面所有test文件测试完毕，当然你也可以带上参数，详情请参考go help testflag</p>
-<hr>
-<h5 id="go-doc">go doc</h5>
-<p>go doc 命令其实就是一个很强大的文档工具。</p>
-<p>如何查看相应package的文档呢？ 例如builtin包，那么执行go doc builtin；如果是http包，那么执行go doc net/http；查看某一个包里面的函数，那么执行godoc fmt Printf；也可以查看相应的代码，执行godoc -src fmt Printf；</p>
-<p>通过命令在命令行执行 godoc -http=:端口号 比如godoc -http=:8080。然后在浏览器中打开127.0.0.1:8080，你将会看到一个golang.org的本地copy版本，通过它你可以查询pkg文档等其它内容。如果你设置了GOPATH，在pkg分类下，不但会列出标准包的文档，还会列出你本地GOPATH中所有项目的相关文档，这对于经常被限制访问的用户来说是一个不错的选择。</p>
-<h5 id="详细的go标准命令">详细的go标准命令</h5>
-<p><a href="https://github.com/hyper0x/go_command_tutorial" target="_blank" rel="noopener">https://github.com/hyper0x/go_command_tutorial</a></p>
+                <h3 id="前言">前言</h3>
+<p>最近发现自己的<a href="hanyajun.com">博客</a>在使用vpn的情况下打开很慢，百度站点也抓取失败，于是将自己的博客借助hexo-deploy 插件很容易同步部署到了coding上。只需要在你的hexo配置文件_config.yml的deploy配上coding的coding page项目url(注意将ssh key 设置好)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git</span><br><span class="line">  repository: </span><br><span class="line">    - git@github.com:Han-Ya-Jun/Han-Ya-Jun.github.io.git</span><br><span class="line">    - git@git.dev.tencent.com:hanyajun0123/hanyajun0123.git</span><br><span class="line">  branch: master</span><br><span class="line">  message: update</span><br><span class="line">- type: baidu_url_submitter</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.hanyajun.com/20190517_223401_coding1.png" alt=""></p>
+<p>配置后于是在阿里云的域名解析上新增两条CNAME记录指向 <a href="http://hanyajun0123.coding.me" target="_blank" rel="noopener">hanyajun0123.coding.me</a>，选择默认解析，原来github的解析换成国外的dns解析路线，这样国内的就指向coding，<a href="http://xn--github-vi6j56qdnff53a752c.io" target="_blank" rel="noopener">国外的指向github.io</a><br>
+<img src="http://cdn.hanyajun.com/20190517_223401_coding.png" alt=""><br>
+访问的时候出现了下面的这种异常（您的链接不是私密链接）<br>
+<img src="http://cdn.hanyajun.com/20190517_223403_coding3.png" alt=""><br>
+看了下coding的证书申请情况也是一直失败<br>
+<img src="http://cdn.hanyajun.com/20190517_223403_coding4.png" alt=""><br>
+后来查了下资料发现得先暂停掉原先指向github.io的解析，这个会对与coding page进行校验。后来停掉再次申请ssl证书就成功了，本来以为完美解决了，谁知自己部署在github page的gitbook的项目访问不了，翻墙之后就可以访问了，这个很好解释，不翻墙就解析到了coding上。于是自己又琢磨了下如何基于travis ci实现gitbook在github和coding的自动化ci。如果之前没有尝试过使用travis ci来部署gitbo的可以参考下我之前写的一篇博客<a href="https://hanyajun.com/devops/travis-ci/">《如何使用travis-ci自动化构建部署GitHub Pages（gitbook)》</a></p>
+<h3 id="ci流程">CI流程</h3>
+<p><img src="http://cdn.hanyajun.com/20190518_002929_gitbook_ci.jpg" alt=""></p>
+<h3 id="获取coding访问令牌">获取coding访问令牌</h3>
+<p><img src="http://cdn.hanyajun.com/20190518_003850_token_coding.png" alt=""></p>
+<h3 id="travis添加coding-token环境变量">travis添加coding token环境变量</h3>
+<p>在Travis上原来github部署ci的gitbook项目里面添加访问coding token。<br>
+<img src="http://cdn.hanyajun.com/20190518_004210_coding_token.png" alt=""></p>
+<h3 id="修改travisyaml-文件">修改.travis.yaml 文件</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">after_script:</span><br><span class="line">   - cd ./_book</span><br><span class="line">   - git init</span><br><span class="line">   - git config user.name &quot;*****&quot; </span><br><span class="line">   - git config user.email &quot;******&quot;</span><br><span class="line">   - git add .</span><br><span class="line">   - git commit -m &quot;Update Gitbook By TravisCI With Build $TRAVIS_BUILD_NUMBER&quot;</span><br><span class="line">   - git push --force --quiet &quot;https://hanyajun0123:$&#123;CODING_TOKEN&#125;@$&#123;CO_REF&#125;&quot; master:master</span><br><span class="line">   - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m &quot;Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER&quot;</span><br><span class="line">   - git push --quiet &quot;https://hanyajun0123:$&#123;CODING_TOKEN&#125;@$&#123;CO_REF&#125;&quot; master:master --tags</span><br><span class="line"></span><br><span class="line"># git@git.dev.tencent.com:hanyajun0123/coding_basis_review.git</span><br><span class="line">env:</span><br><span class="line"> global:</span><br><span class="line">   # Coding Pages</span><br><span class="line">   - CO_REF: git.dev.tencent.com/hanyajun0123/coding_basis_review.git</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/Han-Ya-Jun/coding_basis_review/blob/master/.travis.yml" target="_blank" rel="noopener">完整.travis.yaml文件</a></p>
+<h3 id="触发ci">触发ci</h3>
+<p>修改本地gitbook项目，推送到github上去，就可以粗发ci了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">Creating a brand new local repo from scratch in dir /tmp/d20190517-7047-qvpbfn/work...</span><br><span class="line">dpl.2</span><br><span class="line">Preparing deploy</span><br><span class="line">dpl.3</span><br><span class="line">Deploying application</span><br><span class="line">Initialized empty Git repository in /tmp/d20190517-7047-qvpbfn/work/.git/</span><br><span class="line">Repo created successfully</span><br><span class="line">Switched to a new branch &apos;gh-pages&apos;</span><br><span class="line">An orphan branch gh-pages created successfully</span><br><span class="line">cd -</span><br><span class="line">cd /tmp/d20190517-7047-qvpbfn/work</span><br><span class="line">Copying /home/travis/build/Han-Ya-Jun/coding_basis_review/_book contents to /tmp/d20190517-7047-qvpbfn/work (workdir: /tmp/d20190517-7047-qvpbfn/work)...</span><br><span class="line">Configuring git committer to be Deployment Bot (from Travis CI) &lt;deploy@travis-ci.org&gt; (workdir: /tmp/d20190517-7047-qvpbfn/work)</span><br><span class="line">Preparing to deploy gh-pages branch to gh-pages (workdir: /tmp/d20190517-7047-qvpbfn/work)</span><br><span class="line">commit 76413d48b1f036c4b9c9b4e3fbad583fa24aa87a</span><br><span class="line">Author: Deployment Bot (from Travis CI) &lt;deploy@travis-ci.org&gt;</span><br><span class="line">Date:   Fri May 17 01:15:08 2019 +0800</span><br><span class="line">    Deploy Han-Ya-Jun/coding_basis_review to github.com/Han-Ya-Jun/coding_basis_review.git:gh-pages</span><br><span class="line"> .travis.yml                                        |  49 ++</span><br><span class="line"> generation                                         |   0</span><br><span class="line"> gitbook/fonts/fontawesome/FontAwesome.otf          | Bin 0 -&gt; 124988 bytes</span><br><span class="line"> gitbook/fonts/fontawesome/fontawesome-webfont.eot  | Bin 0 -&gt; 76518 bytes</span><br><span class="line"> gitbook/fonts/fontawesome/fontawesome-webfont.svg  | 685 +++++++++++++++++++++</span><br><span class="line"> gitbook/fonts/fontawesome/fontawesome-webfont.ttf  | Bin 0 -&gt; 152796 bytes</span><br><span class="line"> gitbook/fonts/fontawesome/fontawesome-webfont.woff | Bin 0 -&gt; 90412 bytes</span><br><span class="line"> .../fonts/fontawesome/fontawesome-webfont.woff2    | Bin 0 -&gt; 71896 bytes</span><br><span class="line"> gitbook/gitbook-plugin-3-ba/plugin.js              |  20 +</span><br><span class="line"> .../gitbook-plugin-back-to-top-button/plugin.css   |  55 ++</span><br><span class="line"> ...</span><br><span class="line"> 51 files changed, 6434 insertions(+)</span><br><span class="line">Doing the git push (workdir: /tmp/d20190517-7047-qvpbfn/work)...</span><br><span class="line">On branch gh-pages</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line">cd -</span><br><span class="line">App has been pushed</span><br><span class="line">after_script.1</span><br><span class="line">0.01s$ cd ./_book</span><br><span class="line">after_script.2</span><br><span class="line">0.01s$ git init</span><br><span class="line">Initialized empty Git repository in /home/travis/build/Han-Ya-Jun/coding_basis_review/_book/.git/</span><br><span class="line">after_script.3</span><br><span class="line">0.01s$ git config user.name &quot;hanyajun0123&quot;</span><br><span class="line">after_script.4</span><br><span class="line">0.01s$ git config user.email &quot;1581532052@qq.com&quot;</span><br><span class="line">after_script.5</span><br><span class="line">0.05s$ git add .</span><br><span class="line">after_script.6</span><br><span class="line">0.02s$ git commit -m &quot;Update Gitbook By TravisCI With Build $TRAVIS_BUILD_NUMBER&quot;</span><br><span class="line">[master (root-commit) 1c86337] Update Gitbook By TravisCI With Build 10</span><br><span class="line"> 51 files changed, 6434 insertions(+)</span><br><span class="line"> create mode 100644 .travis.yml</span><br><span class="line"> create mode 100644 generation</span><br><span class="line"> create mode 100644 gitbook/fonts/fontawesome/FontAwesome.otf</span><br><span class="line"> create mode 100644 gitbook/fonts/fontawesome/fontawesome-webfont.eot</span><br><span class="line"> create mode 100644 gitbook/fonts/fontawesome/fontawesome-webfont.svg</span><br><span class="line"> create mode 100644 gitbook/fonts/fontawesome/fontawesome-webfont.ttf</span><br><span class="line"> create mode 100644 gitbook/fonts/fontawesome/fontawesome-webfont.woff</span><br><span class="line"> create mode 100644 gitbook/fonts/fontawesome/fontawesome-webfont.woff2</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-3-ba/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-back-to-top-button/plugin.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-back-to-top-button/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-disqus/plugin.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-disqus/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-donate/plugin.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-donate/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-editlink/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-fontsettings/fontsettings.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-fontsettings/website.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-ga/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-github-buttons/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-github-buttons/plugin.js.map</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-github/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-image-captions/image-captions.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-page-toc-button/plugin.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-page-toc-button/plugin.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-coy.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-dark.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-funky.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-okaidia.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-solarizedlight.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-tomorrow.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism-twilight.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-prism/prism.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-search-plus/jquery.mark.min.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-search-plus/search.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-search-plus/search.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-sharing/buttons.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-splitter/splitter.css</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-splitter/splitter.js</span><br><span class="line"> create mode 100644 gitbook/gitbook-plugin-tbfed-pagefooter/footer.css</span><br><span class="line"> create mode 100644 gitbook/gitbook.js</span><br><span class="line"> create mode 100644 gitbook/images/apple-touch-icon-precomposed-152.png</span><br><span class="line"> create mode 100644 gitbook/images/favicon.ico</span><br><span class="line"> create mode 100644 gitbook/style.css</span><br><span class="line"> create mode 100644 gitbook/theme.js</span><br><span class="line"> create mode 100644 index.html</span><br><span class="line"> create mode 100644 network/TCP_IP.html</span><br><span class="line"> create mode 100644 network/summary.html</span><br><span class="line"> create mode 100644 package-lock.json</span><br><span class="line"> create mode 100644 search_plus_index.json</span><br><span class="line"> create mode 100644 sitemap.xml</span><br><span class="line">after_script.7</span><br><span class="line">3.87s$ git push --force --quiet &quot;https://hanyajun0123:$&#123;CODING_TOKEN&#125;@$&#123;CO_REF&#125;&quot; master:master</span><br><span class="line">after_script.8</span><br><span class="line">0.01s$ git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m &quot;Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER&quot;</span><br><span class="line">after_script.9</span><br><span class="line">1.65s$ git push --quiet &quot;https://hanyajun0123:$&#123;CODING_TOKEN&#125;@$&#123;CO_REF&#125;&quot; master:master --tags</span><br><span class="line">Done. Your build exited with 0.</span><br></pre></td></tr></table></figure>
 
-    <div id="aplayer-uoSRHOcZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="004OxZnj2SktXa" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
-<p><br><br></p>
+    <div id="aplayer-anqGsMiv" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="002sun3u2HDgYl" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
+<p><br><br><br></p>
 
                 
 
@@ -390,13 +275,9 @@ go get 命令本质上可以理解为：首先通过源码工具clone代码到sr
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/tools/windows_tree_skill/" data-toggle="tooltip" data-placement="top" title="windows上如何使用tree生成目录树">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/network-basis/http_tcp_ip/" data-toggle="tooltip" data-placement="top" title="《图解http》阅读笔记--web及网络基础">Next Post &rarr;</a>
+                            <a href="/article/github_travis_ci/" data-toggle="tooltip" data-placement="top" title="github上Go项目使用Travis CI和Docker Hub实现持续集成">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -466,7 +347,7 @@ go get 命令本质上可以理解为：首先通过源码工具clone代码到sr
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#什么是go"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4EC0;&#x4E48;&#x662F;Go?</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#go语言发展历史"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Go&#x8BED;&#x8A00;&#x53D1;&#x5C55;&#x5386;&#x53F2;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#语言特性"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x8BED;&#x8A00;&#x7279;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#go语言优势"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Go&#x8BED;&#x8A00;&#x4F18;&#x52BF;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#go擅长领域"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Go&#x64C5;&#x957F;&#x9886;&#x57DF;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#go语言的缺点"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">GO&#x8BED;&#x8A00;&#x7684;&#x7F3A;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用go语言开发的流行应用"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;Go&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x7684;&#x6D41;&#x884C;&#x5E94;&#x7528;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用go语言的公司"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;Go&#x8BED;&#x8A00;&#x7684;&#x516C;&#x53F8;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#gopath"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">GOPATH</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#包导入"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">&#x5305;&#x5BFC;&#x5165;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#标准命令"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">&#x6807;&#x51C6;&#x547D;&#x4EE4;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-build"><span class="toc-nav-number">11.1.</span> <span class="toc-nav-text">go build</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-clean"><span class="toc-nav-number">11.2.</span> <span class="toc-nav-text">go clean</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-fmt"><span class="toc-nav-number">11.3.</span> <span class="toc-nav-text">go fmt</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-get"><span class="toc-nav-number">11.4.</span> <span class="toc-nav-text">go get</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-install"><span class="toc-nav-number">11.5.</span> <span class="toc-nav-text">go install</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-test"><span class="toc-nav-number">11.6.</span> <span class="toc-nav-text">go test</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#go-doc"><span class="toc-nav-number">11.7.</span> <span class="toc-nav-text">go doc</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#详细的go标准命令"><span class="toc-nav-number">11.8.</span> <span class="toc-nav-text">&#x8BE6;&#x7EC6;&#x7684;go&#x6807;&#x51C6;&#x547D;&#x4EE4;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#前言"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x524D;&#x8A00;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ci流程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">CI&#x6D41;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#获取coding访问令牌"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x83B7;&#x53D6;coding&#x8BBF;&#x95EE;&#x4EE4;&#x724C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#travis添加coding-token环境变量"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">travis&#x6DFB;&#x52A0;coding token&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#修改travisyaml-文件"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">&#x4FEE;&#x6539;.travis.yaml &#x6587;&#x4EF6;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#触发ci"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x89E6;&#x53D1;ci</span></a></li></ol>
         
         </div>
       </aside>
@@ -486,7 +367,7 @@ go get 命令本质上可以理解为：首先通过源码工具clone代码到sr
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#golang" title="golang">golang</a>
+                          <a class="tag" href="/tags/#devops" title="devops">devops</a>
                         
                     </div>
                 </section>

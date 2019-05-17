@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hanyajun.com/tools/windows_tree_skill/</loc>
+    <loc>https://hanyajun.com/devops/gitbook_coding_ci/</loc>
     
-    <lastmod>2019-05-15T17:54:29.359Z</lastmod>
+    <lastmod>2019-05-17T17:07:49.612Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hanyajun.com/article/github_travis_ci/</loc>
     
-    <lastmod>2019-05-15T17:51:42.175Z</lastmod>
+    <lastmod>2019-05-17T17:07:49.599Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hanyajun.com/tools/windows_tree_skill/</loc>
+    
+    <lastmod>2019-05-15T17:54:29.359Z</lastmod>
     
   </url>
   

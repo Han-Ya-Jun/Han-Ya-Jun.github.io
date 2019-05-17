@@ -1,3 +1,4 @@
+https://hanyajun.com/devops/gitbook_coding_ci/
 https://hanyajun.com/article/github_travis_ci/
 https://hanyajun.com/tools/windows_tree_skill/
 https://hanyajun.com/golang/golang_introduction/
