@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          kubernetes从入门到放弃--k8s基本架构 - 朗月清风
+          七牛云文件上传助手 - 朗月清风
         
     </title>
 
-    <link rel="canonical" href="https://hanyajun.com/kubernetes/kubernetes_architecture/">
+    <link rel="canonical" href="https://hanyajun.com/tools/qiniuyun_uoload_tools/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -66,6 +66,9 @@
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 
@@ -76,7 +79,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('http://cdn.hanyajun.com/k8s_bg.jpg')
+            background-image: url('http://cdn.hanyajun.com/20190526_020831_night.jpg')
             /*post*/
         
     }
@@ -93,11 +96,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                              <a class="tag" href="/tags/#tools" title="tools">tools</a>
                             
                         </div>
-                        <h1>kubernetes从入门到放弃--k8s基本架构</h1>
-                        <h2 class="subheading">kubernetes基本架构</h2>
+                        <h1>七牛云文件上传助手</h1>
+                        <h2 class="subheading">七牛云文件上传助手</h2>
 
                         <!--文章访问量统计-->
                         
@@ -107,7 +110,7 @@
 
                         <span class="meta">
                             Posted by 韩亚军 on
-                            2019-04-20
+                            2019-05-26
                         </span>
                     </div>
                 
@@ -238,121 +241,40 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="kubernetes总架构图">kubernetes总架构图</h3>
-<p><img src="http://cdn.hanyajun.com/k8s-arch.jpg" alt="image"></p>
-<h3 id="kubernetes-各组件介绍">kubernetes 各组件介绍</h3>
-<h4 id="master-节点">Master 节点</h4>
-<p>Master是kubernetes的大脑，运行的Deamon 服务包括kube-apiserver、kube-scheduler、kube-contronller-</p>
-<p>manager、etcd和pod网络</p>
-<p><img src="http://cdn.hanyajun.com/k8s_master.jpeg" alt="image"></p>
-<h5 id="各组件介绍">各组件介绍</h5>
+                <h4 id="qiniuyun_upload_tools"><a href="https://github.com/Han-Ya-Jun/qiniuyun_upload_tools" target="_blank" rel="noopener">qiniuyun_upload_tools</a></h4>
+<p>最近写博客发现经常要上传图片到七牛云上去，每次打开网页登录然后上传感觉很慢，windows也没有一个好的上传工具，于是写了这样的一个工具。</p>
+<h4 id="效果">效果</h4>
+<p><img src="https://user-gold-cdn.xitu.io/2019/5/26/16af0222b210bbd5?w=1844&amp;h=974&amp;f=gif&amp;s=1845161" alt=""></p>
+<h4 id="使用方法">使用方法</h4>
+<h5 id="下载程序包点击下载">下载程序包<a href="https://github.com/Han-Ya-Jun/qiniuyun_upload_tools/releases/download/1.0.0/qiniu_upload_tools.zip" target="_blank" rel="noopener">点击下载</a></h5>
+<h5 id="解压后直接在configjson文件里面天上自己七牛云相关的信息">解压后直接在config.json文件里面天上自己七牛云相关的信息。<br></h5>
+<p>config</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"access_key"</span>: <span class="string">"************"</span>, </span><br><span class="line">    <span class="attr">"secret_key"</span>: <span class="string">"***************"</span>, </span><br><span class="line">    <span class="attr">"zone"</span>: <span class="number">0</span>,                                     </span><br><span class="line">    <span class="attr">"Bucket"</span>: <span class="string">"hanyajun"</span>,                        </span><br><span class="line">    <span class="attr">"use_https"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"use_cdn_domains"</span>:<span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"domain"</span>: <span class="string">"http://cdn.hanyajun.com/"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：</p>
 <ul>
-<li>
-<p><strong>API Server</strong>（kube-apiserver）<br></p>
-<p>API Server提供HTTP/HTTPS RESTful API，即Kubernetes API。API Server是Kubernetes　Cluster的前端接</p>
-<p>口，各种客户端工具（CLI或UI）以及Kubernetes其他组件可以通过它管理Cluster的各种资源。</p>
-</li>
-<li>
-<p><strong>Scheduler</strong>（kube-scheduler） <br></p>
-<p>Scheduler负责决定将Pod放在哪个Node上运行。Scheduler在调度时会充分考虑Cluster的拓扑结构，当前各个</p>
-<p>节点的负载，以及应用对高可用、性能、数据亲和性的需求。</p>
-</li>
-<li>
-<p><strong>Controller Manager</strong>（kube-controller-manager） <br></p>
-<p>Controller Manager负责管理Cluster各种资源，保证资源处于预期的状态。Controller Manager由多种Controller</p>
-<p>组成，包括replication controller、endpoint controller、namespace controller、serviceaccounts controller等。</p>
-<p>不同的controller管理不同的资源。例如，replication controller管理Deployment、StatefulSet、DaemonSet的生</p>
-<p>命周期，namespace controller管理Namespace资源。</p>
-</li>
-<li>
-<p><strong>etcd</strong> <br></p>
-<p>etcd负责保存Kubernetes Cluster的配置信息和各种资源的状态信息。当数据发生变化时，etcd会快速通知</p>
-<p>Kubernetes相关组件。</p>
-</li>
-<li>
-<p><strong>Pod网络</strong> <br></p>
-<p>Pod要能够相同通信，Kubernetes Cluster必须部署Pod网络，flannel是其中一个可选方案。</p>
-</li>
+<li>zone: 空间对应的机房-- 0:华东, 1:华北, 2:华南, 3:北美</li>
+<li>Bucket：空间的名字</li>
+<li>use_https: 是否使用https域名</li>
+<li>use_cdn_domains: 上传是否使用CDN上传加速</li>
+<li>domain: 绑定的域名</li>
 </ul>
-<h5 id="master工作流程图">master工作流程图</h5>
-<p><img src="http://cdn.hanyajun.com/k8s_master_workflow.png" alt="image"></p>
-<ol>
-<li>
-<p>Kubecfg将特定的请求，比如创建Pod，发送给Kubernetes Client。</p>
-</li>
-<li>
-<p>Kubernetes Client将请求发送给API server。</p>
-</li>
-<li>
-<p>API Server根据请求的类型，比如创建Pod时storage类型是pods，然后依此选择何种REST Storage API对请求作出处理。</p>
-</li>
-<li>
-<p>REST Storage API对的请求作相应的处理。</p>
-</li>
-<li>
-<p>将处理的结果存入高可用键值存储系统Etcd中。</p>
-</li>
-<li>
-<p>在API Server响应Kubecfg的请求后，Scheduler会根据Kubernetes Client获取集群中运行Pod及Minion/Node信息。</p>
-</li>
-<li>
-<p>依据从Kubernetes Client获取的信息，Scheduler将未分发的Pod分发到可用的Minion/Node节点上。</p>
-</li>
-</ol>
-<h4 id="node节点">Node节点</h4>
-<p>Node节点属于工作节点,是pod运行的地方。</p>
-<p><img src="http://cdn.hanyajun.com/k8s_node.jpg" alt="image"></p>
-<h5 id="各组件介绍">各组件介绍</h5>
-<ol>
-<li>
-<p><strong>kubelet</strong>　<br></p>
-<p>node的agent，当scheduler去确定在某个node上运行pod后，会将pod的具体配置信息发送给该节点的</p>
-<p>kubelet， kubelet会根据遮羞信息创建和运行容器，并向master报告运行状态。</p>
-</li>
-<li>
-<p><strong>kube-proxy</strong> <br></p>
-<p>每个node都会运行kube-proxy服务，外界通过service访问pod，kube-proxy负责将降访问service的TCP/UDP数</p>
-<p>据流转发到后端的容器。如果有多个副本，kube-proxy会实现负载均衡。</p>
-</li>
-<li>
-<p><strong>pod网络</strong>  <br></p>
-<p>pod能能够互相通信，k8s集群必须部署pod网络，flannel是其中一个可以选择的方案</p>
-</li>
-</ol>
-<h5 id="kubectl-架构解读">kubectl 架构解读</h5>
-<p><img src="http://cdn.hanyajun.com/kubelet.png" alt="image"></p>
-<h6 id="kubelet节点上的pod管家">Kubelet[节点上的Pod管家]</h6>
-<p>负责Node节点上pod的创建、修改、监控、删除等全生命周期的管理<br>
-定时上报本Node的状态信息给API Server。</p>
-<p>kubelet是Master API Server和Minion/Node之间的桥梁，接收Master API Server分配给它的commands和work，</p>
-<p>通过kube-apiserver间接与Etcd集群交互，读取配置信息。<br>
-具体的工作如下：</p>
-<ol>
-<li>
-<p>设置容器的环境变量、给容器绑定Volume、给容器绑定Port、根据指定的Pod运行一个单一容器、给指定的Pod创建network 容器。</p>
-</li>
-<li>
-<p>同步Pod的状态、同步Pod的状态、从cAdvisor获取container info、 pod info、 root info、 machine info。</p>
-</li>
-<li>
-<p>在容器中运行命令、杀死容器、删除Pod的所有容器。</p>
-</li>
-</ol>
-<p>参考链接：<a href="https://yq.aliyun.com/articles/47308?spm=5176.100240.searchblog.19.jF7FFa" target="_blank" rel="noopener">https://yq.aliyun.com/articles/47308?spm=5176.100240.searchblog.19.jF7FFa</a></p>
-<div><h2 id="推荐文章">推荐文章<span style="font-size:0.45em; color:gray"></span></h2><ul><li><a href="https://hanyajun.com/kubernetes/kubernetes_kubeadm/">kubernetes从入门到放弃--使用kubeadm快速安装kubernetes</a></li><li><a href="https://hanyajun.com/kubernetes/kubenetes_concept/">kubernetes从入门到放弃--k8s基本概念</a></li><li><a href="http://www.hanyajun.com/kubernetes/kubenetes_concept/">kubernetes从入门到放弃--k8s基本概念</a></li><li><a href="http://www.hanyajun.com/kubernetes/kubernetes_architecture/">kubernetes从入门到放弃--k8s基本架构</a></li><li><a href="http://www.hanyajun.com/kubernetes/kubernetes_kubeadm/">kubernetes从入门到放弃--使用kubeadm快速安装kubernetes</a></li></ul></div>
+<h5 id="将自己要上传的图片放到need_upload_data文件夹里面">将自己要上传的图片放到need_upload_data文件夹里面</h5>
+<h5 id="运行程序上传成功即可直接复制粘贴到博客文章中">运行程序上传成功，即可直接复制粘贴到博客文章中</h5>
+<h4 id="to-do">to do</h4>
+<p>尝试实现GUI界面操作，可以批量选择图片然后也可以粘贴图片上传</p>
+
+    <div id="aplayer-eGHtbnLt" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="000JzzCG3UCUUk" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
+<p><br><br><br></p>
+<div><h2 id="推荐文章">推荐文章<span style="font-size:0.45em; color:gray"></span></h2><ul><li><a href="https://hanyajun.com/tools/gocn_news_push/">爬取GoCn每日新闻并推送到微信/邮箱</a></li><li><a href="https://hanyajun.com/tools/qrcode2console/">如何将链接生成二维码或者二维码图片输出到console？</a></li><li><a href="https://hanyajun.com/tools/windows_tree_skill/">windows上如何使用tree生成目录树</a></li><li><a href="https://tech.leidar.ren/site-build-road/">建站之路</a></li></ul></div>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/life/rain_worry/" data-toggle="tooltip" data-placement="top" title="夜雨思愁">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/kubernetes/kubenetes_concept/" data-toggle="tooltip" data-placement="top" title="kubernetes从入门到放弃--k8s基本概念">Next Post &rarr;</a>
+                            <a href="/devops/gitbook_coding_ci/" data-toggle="tooltip" data-placement="top" title="基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -411,12 +333,18 @@
             <!-- Table of Contents -->
 
   
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#kubernetes总架构图"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">kubernetes&#x603B;&#x67B6;&#x6784;&#x56FE;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#kubernetes-各组件介绍"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">kubernetes &#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#master-节点"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Master &#x8282;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#各组件介绍"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">&#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#master工作流程图"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">master&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x56FE;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#node节点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">Node&#x8282;&#x70B9;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#各组件介绍"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">&#x5404;&#x7EC4;&#x4EF6;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#kubectl-架构解读"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">kubectl &#x67B6;&#x6784;&#x89E3;&#x8BFB;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#kubelet节点上的pod管家"><span class="toc-nav-number">2.2.2.1.</span> <span class="toc-nav-text">Kubelet[&#x8282;&#x70B9;&#x4E0A;&#x7684;Pod&#x7BA1;&#x5BB6;]</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#推荐文章"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x63A8;&#x8350;&#x6587;&#x7AE0;<span style="font-size:0.45em; color:gray"></span></span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#qiniuyun_upload_tools"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"><a href="https://github.com/Han-Ya-Jun/qiniuyun_upload_tools" target="_blank" rel="noopener">qiniuyun_upload_tools</a></span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#效果"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x6548;&#x679C;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用方法"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#下载程序包点击下载"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">&#x4E0B;&#x8F7D;&#x7A0B;&#x5E8F;&#x5305;<a href="https://github.com/Han-Ya-Jun/qiniuyun_upload_tools/releases/download/1.0.0/qiniu_upload_tools.zip" target="_blank" rel="noopener">&#x70B9;&#x51FB;&#x4E0B;&#x8F7D;</a></span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#解压后直接在configjson文件里面天上自己七牛云相关的信息"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">&#x89E3;&#x538B;&#x540E;&#x76F4;&#x63A5;&#x5728;config.json&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x5929;&#x4E0A;&#x81EA;&#x5DF1;&#x4E03;&#x725B;&#x4E91;&#x76F8;&#x5173;&#x7684;&#x4FE1;&#x606F;&#x3002;<br></span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#将自己要上传的图片放到need_upload_data文件夹里面"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">&#x5C06;&#x81EA;&#x5DF1;&#x8981;&#x4E0A;&#x4F20;&#x7684;&#x56FE;&#x7247;&#x653E;&#x5230;need_upload_data&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x9762;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#运行程序上传成功即可直接复制粘贴到博客文章中"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x4E0A;&#x4F20;&#x6210;&#x529F;&#xFF0C;&#x5373;&#x53EF;&#x76F4;&#x63A5;&#x590D;&#x5236;&#x7C98;&#x8D34;&#x5230;&#x535A;&#x5BA2;&#x6587;&#x7AE0;&#x4E2D;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#to-do"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">to do</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#推荐文章"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x63A8;&#x8350;&#x6587;&#x7AE0;<span style="font-size:0.45em; color:gray"></span></span></a>
         
         </div>
       </aside>
@@ -436,7 +364,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+                          <a class="tag" href="/tags/#tools" title="tools">tools</a>
                         
                     </div>
                 </section>
