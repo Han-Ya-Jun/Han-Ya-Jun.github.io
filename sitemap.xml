@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hanyajun.com/about/index.html</loc>
+    
+    <lastmod>2019-05-26T11:32:29.518Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hanyajun.com/tools/qiniuyun_uoload_tools/</loc>
     
     <lastmod>2019-05-25T18:14:10.007Z</lastmod>
@@ -89,13 +96,6 @@
     <loc>https://hanyajun.com/kubernetes/kubenetes_concept/</loc>
     
     <lastmod>2019-04-25T09:10:41.414Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hanyajun.com/about/index.html</loc>
-    
-    <lastmod>2019-04-21T00:12:02.115Z</lastmod>
     
   </url>
   
