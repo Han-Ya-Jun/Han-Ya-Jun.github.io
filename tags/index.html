@@ -76,7 +76,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('http://cdn.hanyajun.com/tag.png')
+            background-image: url('http://cdn.hanyajun.com/20190602_033016_16850.jpg')
             /*page*/
         
     }
@@ -153,16 +153,13 @@
                             <a href="/tags/" >Tags</a>
                         </li>
                     
+                        <li>
+                            <a href="/Ebooks/" >Ebooks</a>
+                        </li>
+                    
 
                     <!-- 
 
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
                         
                     
 
@@ -175,7 +172,21 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/Ebooks/">Ebooks</a>
                         </li>
                         
                      -->
@@ -225,13 +236,13 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
+                    <a href="#devops" title="devops" rel="4">devops</a>
+                
                     <a href="#tools" title="tools" rel="4">tools</a>
                 
                     <a href="#kubernetes" title="kubernetes" rel="3">kubernetes</a>
                 
                     <a href="#随笔" title="随笔" rel="1">随笔</a>
-                
-                    <a href="#devops" title="devops" rel="4">devops</a>
                 
                     <a href="#golang" title="golang" rel="1">golang</a>
                 
@@ -241,6 +252,89 @@
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="devops">
+                    <span class="tag-text">devops</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/devops/code_pipeline_devops/">
+                        <h2 class="post-title">
+                            go程序基于阿里云CodePipeline的一次devops实践
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                CodePipeline的一次devops实践
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/devops/travis-ci/">
+                        <h2 class="post-title">
+                            如何使用travis-ci自动化构建部署GitHub Pages（gitbook）
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                travis-ci
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/article/github_travis_ci/">
+                        <h2 class="post-title">
+                            github上Go项目使用Travis CI和Docker Hub实现持续集成
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                使用Travis CI和Docker Hub实现持续集成
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/devops/gitbook_coding_ci/">
+                        <h2 class="post-title">
+                            基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                Travis CI实现gitbook同步部署github和coding
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="tools">
@@ -290,25 +384,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/tools/qrcode2console/">
-                        <h2 class="post-title">
-                            如何将链接生成二维码或者二维码图片输出到console？
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                qrcode2console
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
                      <a href="/tools/windows_tree_skill/">
                         <h2 class="post-title">
                             windows上如何使用tree生成目录树
@@ -323,12 +398,50 @@
                 </div>
                 <hr>
                 
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/tools/qrcode2console/">
+                        <h2 class="post-title">
+                            如何将链接生成二维码或者二维码图片输出到console？
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                qrcode2console
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
             </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="kubernetes">
                     <span class="tag-text">kubernetes</span>
                 </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/kubernetes/kubernetes_architecture/">
+                        <h2 class="post-title">
+                            kubernetes从入门到放弃--k8s基本架构
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                kubernetes基本架构
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
                 
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -368,25 +481,6 @@
                 </div>
                 <hr>
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/kubernetes/kubernetes_architecture/">
-                        <h2 class="post-title">
-                            kubernetes从入门到放弃--k8s基本架构
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                kubernetes基本架构
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
             </div>
             
             <div class="one-tag-list">
@@ -406,89 +500,6 @@
                         
                             <h3 class="post-subtitle">
                                 夜雨思愁
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="devops">
-                    <span class="tag-text">devops</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/devops/travis-ci/">
-                        <h2 class="post-title">
-                            如何使用travis-ci自动化构建部署GitHub Pages（gitbook）
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                travis-ci
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/devops/code_pipeline_devops/">
-                        <h2 class="post-title">
-                            go程序基于阿里云CodePipeline的一次devops实践
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                CodePipeline的一次devops实践
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/devops/gitbook_coding_ci/">
-                        <h2 class="post-title">
-                            基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                Travis CI实现gitbook同步部署github和coding
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/article/github_travis_ci/">
-                        <h2 class="post-title">
-                            github上Go项目使用Travis CI和Docker Hub实现持续集成
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                使用Travis CI和Docker Hub实现持续集成
                             </h3>
                         
                     </a>
