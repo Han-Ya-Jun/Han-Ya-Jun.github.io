@@ -165,13 +165,6 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -180,6 +173,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -287,6 +287,40 @@ API Server提供HTTP......
         <div class="tags">
             
               <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/article/git/">
+        <h2 class="post-title">
+            
+            git操作整理
+        </h2>
+        <h3 class="post-subtitle">
+            git操作整理
+        </h3>
+        <div class="post-content-preview">
+            git 操作整理
+统一概念：
+- 工作区：改动（增删文件和内容）
+- 暂存区：输入命令：`git add 改动的文件名`，此次改动就放到了 ‘暂存区’
+- 本地仓库(简称：本地)：输入命令：`git commit 此次修改的描述`，此次改动就放到了 ’本地仓库’，每个 commit，我叫它为一个 ‘版本’。
+- 远程仓库(简称：远程)：输入命令：`git push 远程仓库`，此次改动就放到......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-06-16
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#git" title="git">git</a>
             
         </div>
     
@@ -560,40 +594,6 @@ NO......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/tools/qrcode2console/">
-        <h2 class="post-title">
-            
-            如何将链接生成二维码或者二维码图片输出到console？
-        </h2>
-        <h3 class="post-subtitle">
-            qrcode2console
-        </h3>
-        <div class="post-content-preview">
-            qrcode2console   github地址
-链接生成二维码输出到console或者是二维码图片输出到console
-安装
-1go get -u github.com/Han-Ya-Jun/qrcode2console
-示例
-1234567891011func TestNewQRCode2ConsoleWithUrl(t *testing.T) &#123;	qr := NewQRCo......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 韩亚军 on
-            2019-05-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#tools" title="tools">tools</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -648,6 +648,10 @@ NO......
         
             
             <a href="/tags/#devops" title="devops" rel="4">devops</a>
+            
+        
+            
+            <a href="/tags/#git" title="git" rel="1">git</a>
             
         
             
@@ -756,6 +760,10 @@ NO......
     <ul>
       
         <li>
+          <a href="/article/git/">git操作整理</a>
+        </li>
+      
+        <li>
           <a href="/devops/code_pipeline_devops/">go程序基于阿里云CodePipeline的一次devops实践</a>
         </li>
       
@@ -769,10 +777,6 @@ NO......
       
         <li>
           <a href="/article/github_travis_ci/">github上Go项目使用Travis CI和Docker Hub实现持续集成</a>
-        </li>
-      
-        <li>
-          <a href="/tools/windows_tree_skill/">windows上如何使用tree生成目录树</a>
         </li>
       
     </ul>
@@ -803,7 +807,7 @@ NO......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">5</span></li></ul>
     </div>
 
         <hr>
