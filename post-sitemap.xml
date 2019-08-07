@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://hanyajun.com/golang/int2sting/</loc>
+        <lastmod>2019-08-07T08:45:34.948Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hanyajun.com/article/git/</loc>
         <lastmod>2019-06-16T14:31:08.906Z</lastmod>
         <changefreq>weekly</changefreq>

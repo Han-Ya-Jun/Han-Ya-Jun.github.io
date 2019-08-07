@@ -161,14 +161,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -276,6 +276,41 @@ API Server提供HTTP......
         <div class="tags">
             
               <a href="/tags/#kubernetes" title="kubernetes">kubernetes</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/golang/int2sting/">
+        <h2 class="post-title">
+            
+            go里面如何将[]int64序列化为 []string
+        </h2>
+        <h3 class="post-subtitle">
+            int64序列化为string
+        </h3>
+        <div class="post-content-preview">
+            背景
+有时我们会遇到必须用int64的情景(snowflake id等)，这个时候会遇到一个很尴尬的问题，就是js的number类型最大只支持2^53，就会出现精度丢失的情况，这个时候最好是用string与前端交互比较合适。
+对于单一的int 序列化为string
+123type Demo struct &#123;	ID int64 `json:"id,string"`&#125;
+
+
+注......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 韩亚军 on
+            2019-08-07
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#go-json" title="go-json">go-json</a>
             
         </div>
     
@@ -547,42 +582,6 @@ Go，全称golang，是Google开发的一种静态强类型、编译型、并发
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/tools/gocn_news_push/">
-        <h2 class="post-title">
-            
-            爬取GoCn每日新闻并推送到微信/邮箱
-        </h2>
-        <h3 class="post-subtitle">
-            GoCn每日新闻每日推送
-        </h3>
-        <div class="post-content-preview">
-            爬取GoCn每日新闻并推送到微信/邮箱
-github: https://github.com/Han-Ya-Jun/news_watch_notice
-
-使用方法
-通过微信通知
-12docker run -v /etc/localtime:/etc/localtime:ro \-e NOTICE_WECHAT_USERS=特鲁尼克 hanyajun/news_watch_notice
-
-NO......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 韩亚军 on
-            2019-05-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#tools" title="tools">tools</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -625,6 +624,10 @@ NO......
         
             
             <a href="/tags/#tools" title="tools" rel="4">tools</a>
+            
+        
+            
+            <a href="/tags/#go-json" title="go-json" rel="1">go-json</a>
             
         
             
@@ -749,6 +752,10 @@ NO......
     <ul>
       
         <li>
+          <a href="/golang/int2sting/">go里面如何将[]int64序列化为 []string</a>
+        </li>
+      
+        <li>
           <a href="/article/git/">git操作整理</a>
         </li>
       
@@ -762,10 +769,6 @@ NO......
       
         <li>
           <a href="/devops/gitbook_coding_ci/">基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署</a>
-        </li>
-      
-        <li>
-          <a href="/article/github_travis_ci/">github上Go项目使用Travis CI和Docker Hub实现持续集成</a>
         </li>
       
     </ul>
@@ -796,7 +799,7 @@ NO......
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">5</span></li></ul>
     </div>
 
         <hr>

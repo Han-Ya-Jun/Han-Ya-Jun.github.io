@@ -28,13 +28,6 @@
     </url>
 
     <url>
-        <loc>https://hanyajun.com/categories/golang/</loc>
-        <lastmod>2019-05-13T19:37:33.861Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://hanyajun.com/categories/tools/</loc>
         <lastmod>2019-05-25T18:14:10.007Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -44,6 +37,13 @@
     <url>
         <loc>https://hanyajun.com/categories/devops/</loc>
         <lastmod>2019-05-30T14:41:02.350Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://hanyajun.com/categories/golang/</loc>
+        <lastmod>2019-08-07T08:45:34.948Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
