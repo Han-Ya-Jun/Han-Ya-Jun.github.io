@@ -225,15 +225,17 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
+                    <a href="#go" title="go" rel="1">go</a>
+                
                     <a href="#tools" title="tools" rel="4">tools</a>
                 
                     <a href="#kubernetes" title="kubernetes" rel="3">kubernetes</a>
                 
                     <a href="#golang" title="golang" rel="2">golang</a>
                 
-                    <a href="#devops" title="devops" rel="4">devops</a>
-                
                     <a href="#随笔" title="随笔" rel="1">随笔</a>
+                
+                    <a href="#devops" title="devops" rel="4">devops</a>
                 
                     <a href="#git" title="git" rel="1">git</a>
                 
@@ -243,6 +245,32 @@
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="go">
+                    <span class="tag-text">go</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/go/go_test_benchmark/">
+                        <h2 class="post-title">
+                            go test和benchmark如何只对指定方法进行测试
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                go test
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="tools">
@@ -437,6 +465,32 @@
             </div>
             
             <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="随笔">
+                    <span class="tag-text">随笔</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/life/rain_worry/">
+                        <h2 class="post-title">
+                            夜雨思愁
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                夜雨思愁
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="devops">
                     <span class="tag-text">devops</span>
                 </span>
@@ -484,25 +538,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/article/github_travis_ci/">
-                        <h2 class="post-title">
-                            github上Go项目使用Travis CI和Docker Hub实现持续集成
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                使用Travis CI和Docker Hub实现持续集成
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
                      <a href="/devops/gitbook_coding_ci/">
                         <h2 class="post-title">
                             基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署
@@ -517,25 +552,18 @@
                 </div>
                 <hr>
                 
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="随笔">
-                    <span class="tag-text">随笔</span>
-                </span>
-                
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/life/rain_worry/">
+                     <a href="/article/github_travis_ci/">
                         <h2 class="post-title">
-                            夜雨思愁
+                            github上Go项目使用Travis CI和Docker Hub实现持续集成
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                夜雨思愁
+                                使用Travis CI和Docker Hub实现持续集成
                             </h3>
                         
                     </a>

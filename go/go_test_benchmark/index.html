@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          如何将链接生成二维码或者二维码图片输出到console？ - 朗月清风
+          go test和benchmark如何只对指定方法进行测试 - 朗月清风
         
     </title>
 
-    <link rel="canonical" href="https://hanyajun.com/tools/qrcode2console/">
+    <link rel="canonical" href="https://hanyajun.com/go/go_test_benchmark/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -96,11 +96,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#tools" title="tools">tools</a>
+                              <a class="tag" href="/tags/#go" title="go">go</a>
                             
                         </div>
-                        <h1>如何将链接生成二维码或者二维码图片输出到console？</h1>
-                        <h2 class="subheading">qrcode2console</h2>
+                        <h1>go test和benchmark如何只对指定方法进行测试</h1>
+                        <h2 class="subheading">go test</h2>
 
                         <!--文章访问量统计-->
                         
@@ -110,7 +110,7 @@
 
                         <span class="meta">
                             Posted by 韩亚军 on
-                            2019-05-08
+                            2019-10-19
                         </span>
                     </div>
                 
@@ -241,30 +241,42 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="qrcode2console-github地址">qrcode2console   <a href="https://github.com/Han-Ya-Jun/qrcode2console" target="_blank" rel="noopener">github地址</a></h3>
-<p>链接生成二维码输出到console或者是二维码图片输出到console</p>
-<h3 id="安装">安装</h3>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get -u github.com/Han-Ya-Jun/qrcode2console</span><br></pre></td></tr></table></figure>
-<h3 id="示例">示例</h3>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestNewQRCode2ConsoleWithUrl</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	qr := NewQRCode2ConsoleWithUrl(<span class="string">"https://hanyajun.com"</span>, <span class="literal">true</span>)</span><br><span class="line">	<span class="comment">//qr.Debug()</span></span><br><span class="line">	qr.Output()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestNewQRCode2ConsoleWithPath</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	qr := NewQRCode2ConsoleWithPath(<span class="string">"qrcode.jpg"</span>)</span><br><span class="line">	<span class="comment">//qr.Debug()</span></span><br><span class="line">	qr.Output()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="效果">效果</h3>
-<p><img src="https://github.com/Han-Ya-Jun/qrcode2console/blob/master/case1.png?raw=true" alt="image"><br>
-<img src="https://github.com/Han-Ya-Jun/qrcode2console/blob/master/case2.png?raw=true" alt="image"></p>
+                <h3 id="go-test">go test</h3>
+<p>demo_test.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestDemo1</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	t.Log(<span class="string">"test1"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestDemo2</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	t.Log(<span class="string">"test2"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BenchmarkDemo3</span><span class="params">(b *testing.B)</span></span> &#123;</span><br><span class="line">	b.Log(<span class="string">"benchmark1"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BenchmarkDemo4</span><span class="params">(b *testing.B)</span></span> &#123;</span><br><span class="line">	b.Log(<span class="string">"benchmark2"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如何只对TestDemo1测试？</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go test -v  demo_test.go -test.run Demo1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">go</span> test -v  demo_test.<span class="keyword">go</span> -test.run Demo1</span><br><span class="line">=== RUN   TestDemo1</span><br><span class="line">--- PASS: TestDemo1 (<span class="number">0.00s</span>)</span><br><span class="line">    demo_test.<span class="keyword">go</span>:<span class="number">13</span>: test1</span><br><span class="line">PASS</span><br><span class="line">ok      command-line-arguments  (cached)</span><br></pre></td></tr></table></figure>
+<h3 id="go-benchmark">go benchmark</h3>
+<ul>
+<li>那如何只对benchMarkDemo3做性能测试呢？</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go test -v  demo_test.go -test.bench Demo3 -test.run Demo3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ go test -v  demo_test.go -test.bench Demo3 -test.run Demo3</span><br><span class="line">goos: windows</span><br><span class="line">goarch: amd64</span><br><span class="line">BenchmarkDemo3-<span class="number">12</span>       <span class="number">2000000000</span>               <span class="number">0.00</span> ns/op</span><br><span class="line">--- BENCH: BenchmarkDemo3-<span class="number">12</span></span><br><span class="line">    demo_test.go:<span class="number">21</span>: benchmark1</span><br><span class="line">    demo_test.go:<span class="number">21</span>: benchmark1</span><br><span class="line">    demo_test.go:<span class="number">21</span>: benchmark1</span><br><span class="line">    demo_test.go:<span class="number">21</span>: benchmark1</span><br><span class="line">    demo_test.go:<span class="number">21</span>: benchmark1</span><br><span class="line">    demo_test.go:<span class="number">21</span>: benchmark1</span><br><span class="line">PASS</span><br></pre></td></tr></table></figure>
+<p>go test 参数解读</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go test [-c] [-i] [build/test flags] [packages] [build/test flags &amp; test binary flags]</span><br></pre></td></tr></table></figure>
+<p>参数解读:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">-c : 编译go test成为可执行的二进制文件，但是不运行测试。</span><br><span class="line"></span><br><span class="line">-i : 安装测试包依赖的package，但是不运行测试。</span><br><span class="line"></span><br><span class="line">关于build flags，调用go help build，这些是编译运行过程中需要使用到的参数，一般设置为空</span><br><span class="line"></span><br><span class="line">关于packages，调用go help packages，这些是关于包的管理，一般设置为空</span><br><span class="line"></span><br><span class="line">关于flags <span class="keyword">for</span> test binary，调用go help testflag，这些是go test过程中经常使用到的参数</span><br><span class="line"></span><br><span class="line">-test.v : 是否输出全部的单元测试用例（不管成功或者失败），默认没有加上，所以只输出失败的单元测试用例。</span><br><span class="line"></span><br><span class="line">-test.run pattern: 只跑哪些单元测试用例</span><br><span class="line"></span><br><span class="line">-test.bench patten: 只跑那些性能测试用例</span><br><span class="line"></span><br><span class="line">-test.benchmem : 是否在性能测试的时候输出内存情况</span><br><span class="line"></span><br><span class="line">-test.benchtime t : 性能测试运行的时间，默认是<span class="number">1</span>s</span><br><span class="line"></span><br><span class="line">-test.cpuprofile cpu.out : 是否输出cpu性能分析文件</span><br><span class="line"></span><br><span class="line">-test.memprofile mem.out : 是否输出内存性能分析文件</span><br><span class="line"></span><br><span class="line">-test.blockprofile block.out : 是否输出内部goroutine阻塞的性能分析文件</span><br><span class="line"></span><br><span class="line">-test.memprofilerate n : 内存性能分析的时候有一个分配了多少的时候才打点记录的问题。这个参数就是设置打点的内存分配间隔，也就是profile中一个sample代表的内存大小。默认是设置为<span class="number">512</span> * <span class="number">1024</span>的。如果你将它设置为<span class="number">1</span>，则每分配一个内存块就会在profile中有个打点，那么生成的profile的sample就会非常多。如果你设置为<span class="number">0</span>，那就是不做打点了。</span><br><span class="line"></span><br><span class="line">你可以通过设置memprofilerate=<span class="number">1</span>和GOGC=off来关闭内存回收，并且对每个内存块的分配进行观察。</span><br><span class="line"></span><br><span class="line">-test.blockprofilerate n: 基本同上，控制的是goroutine阻塞时候打点的纳秒数。默认不设置就相当于-test.blockprofilerate=<span class="number">1</span>，每一纳秒都打点记录一下</span><br><span class="line"></span><br><span class="line">-test.parallel n : 性能测试的程序并行cpu数，默认等于GOMAXPROCS。</span><br><span class="line"></span><br><span class="line">-test.timeout t : 如果测试用例运行时间超过t，则抛出panic</span><br><span class="line"></span><br><span class="line">-test.cpu <span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span> : 程序运行在哪些CPU上面，使用二进制的<span class="number">1</span>所在位代表，和nginx的nginx_worker_cpu_affinity是一个道理</span><br><span class="line"></span><br><span class="line">-test.short : 将那些运行时间较长的测试用例运行时间缩短</span><br></pre></td></tr></table></figure>
 
-    <div id="aplayer-EwHVvCPq" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="000bzSQE1IZOXJ" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div><div><h2 id="推荐文章">推荐文章<span style="font-size:0.45em; color:gray"></span></h2><ul><li><a href="https://hanyajun.com/tools/gocn_news_push/">爬取GoCn每日新闻并推送到微信/邮箱</a></li><li><a href="https://hanyajun.com/tools/qiniuyun_uoload_tools/">七牛云文件上传助手</a></li><li><a href="https://hanyajun.com/tools/windows_tree_skill/">windows上如何使用tree生成目录树</a></li></ul></div>
+    <div id="aplayer-XUiOmxnJ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="003ebMYY2PGmn6" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
+
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/tools/gocn_news_push/" data-toggle="tooltip" data-placement="top" title="爬取GoCn每日新闻并推送到微信/邮箱">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/devops/travis-ci/" data-toggle="tooltip" data-placement="top" title="如何使用travis-ci自动化构建部署GitHub Pages（gitbook）">Next Post &rarr;</a>
+                            <a href="/golang/int2sting/" data-toggle="tooltip" data-placement="top" title="go里面如何将[]int64序列化为 []string">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -334,7 +346,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#qrcode2console-github地址"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">qrcode2console   <a href="https://github.com/Han-Ya-Jun/qrcode2console" target="_blank" rel="noopener">github&#x5730;&#x5740;</a></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x5B89;&#x88C5;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#示例"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x793A;&#x4F8B;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#效果"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">&#x6548;&#x679C;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#推荐文章"><span class="toc-nav-number"></span> <span class="toc-nav-text">&#x63A8;&#x8350;&#x6587;&#x7AE0;<span style="font-size:0.45em; color:gray"></span></span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-test"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">go test</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-benchmark"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">go benchmark</span></a></li></ol>
         
         </div>
       </aside>
@@ -354,7 +366,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#tools" title="tools">tools</a>
+                          <a class="tag" href="/tags/#go" title="go">go</a>
                         
                     </div>
                 </section>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hanyajun.com/go/go_test_benchmark/</loc>
+    
+    <lastmod>2019-10-19T01:39:29.029Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hanyajun.com/golang/int2sting/</loc>
     
     <lastmod>2019-08-08T10:19:41.884Z</lastmod>
