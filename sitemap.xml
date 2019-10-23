@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hanyajun.com/flutter/flutter_layout/</loc>
+    
+    <lastmod>2019-10-23T16:14:42.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hanyajun.com/flutter/flutter_base_component/</loc>
+    
+    <lastmod>2019-10-23T16:04:03.723Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hanyajun.com/go/go_test_benchmark/</loc>
     
     <lastmod>2019-10-19T01:39:29.029Z</lastmod>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一份耕耘，一份收获">
+    <meta name="keyword"  content="朗月清风,韩亚军">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          flutter--基础组件 - 朗月清风
+        
+    </title>
+
+    <link rel="canonical" href="https://hanyajun.com/flutter/flutter_base_component/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    <!--不蒜子-->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    
+<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('http://cdn.hanyajun.com/2019-10-24-00-03-12.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#flutter" title="flutter">flutter</a>
+                            
+                        </div>
+                        <h1>flutter--基础组件</h1>
+                        <h2 class="subheading">flutter 基础组件</h2>
+
+                        <!--文章访问量统计-->
+                        
+                            <span id="busuanzi_container_page_pv">本文已被阅读过<span id="busuanzi_value_page_pv"></span>次</span>
+                        
+                        <!--文章访问量统计-->
+
+                        <span class="meta">
+                            Posted by 韩亚军 on
+                            2019-10-23
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">韩亚军</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        <li>
+                            <a href="/about/" >About</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives/" >Archives</a>
+                        </li>
+                    
+                        <li>
+                            <a href="/tags/" >Tags</a>
+                        </li>
+                    
+
+                    <!-- 
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                     -->
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="flutter-study">flutter study</h1>
+<h3 id="基础组件">基础组件</h3>
+<h4 id="text-widget">Text Widget</h4>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">        title: <span class="string">'text widget'</span>,</span><br><span class="line">        home: Scaffold(</span><br><span class="line">            body: Center(</span><br><span class="line">          child: Text(</span><br><span class="line">            <span class="string">'hello,widget,asdfaaaaaaaaaaaaaaaaaaaaaaaa'</span>,</span><br><span class="line">            textAlign: TextAlign.center,</span><br><span class="line">            maxLines:<span class="number">1</span>,  <span class="comment">//设置行数限制</span></span><br><span class="line">            overflow: TextOverflow.ellipsis,<span class="comment">//超过限制之后</span></span><br><span class="line">            style: TextStyle(</span><br><span class="line">              fontSize:<span class="number">25.0</span>,</span><br><span class="line">              color:Color.fromARGB(<span class="number">255</span>, <span class="number">255</span>, <span class="number">125</span>, <span class="number">125</span>),</span><br><span class="line">              decoration:TextDecoration.underline,</span><br><span class="line">              decorationStyle:TextDecorationStyle.solid</span><br><span class="line">            ),</span><br><span class="line">            ),</span><br><span class="line">        ),</span><br><span class="line">        </span><br><span class="line">        ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="textalign属性">TextAlign属性</h5>
+<ul>
+<li>
+<p>TextAlign属性就是文本的对齐方式，它的属性值有如下几个（详细请看视频中讲解）：</p>
+</li>
+<li>
+<p>center: 文本以居中形式对齐,这个也算比较常用的了。</p>
+</li>
+<li>
+<p>left:左对齐，经常使用，让文本居左进行对齐，效果和start一样。</p>
+</li>
+<li>
+<p>right :右对齐，使用频率也不算高。</p>
+</li>
+<li>
+<p>start:以开始位置进行对齐，类似于左对齐。</p>
+</li>
+<li>
+<p>end: 以为本结尾处进行对齐，不常用。有点类似右对齐.</p>
+</li>
+</ul>
+<p>总结起来，也就算三个对齐方式，left(左对齐)、center（居中对齐）、right（右对齐）</p>
+<h5 id="maxlines属性">maxLines属性</h5>
+<p>设置最多显示的行数</p>
+<h5 id="overflow属性">overflow属性</h5>
+<ul>
+<li>
+<p>overflow属性是用来设置文本溢出时，如何处理,它有下面几个常用的值供我们选择。</p>
+</li>
+<li>
+<p>clip：直接切断，剩下的文字就没有了，感觉不太友好，体验性不好。</p>
+</li>
+<li>
+<p>ellipsis:在后边显示省略号，体验性较好，这个在工作中经常使用。</p>
+</li>
+<li>
+<p>fade: 溢出的部分会进行一个渐变消失的效果，当然是上线的渐变，不是左右的哦。</p>
+</li>
+</ul>
+<h5 id="style属性">style属性</h5>
+<p>style属性的内容比较多，具体的你可以查一下API</p>
+<p><img src="http://cdn.hanyajun.com/2019-10-18-00-22-02.png" alt="image"></p>
+<h4 id="container-widget">Container widget</h4>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">        title: <span class="string">'text widget'</span>,</span><br><span class="line">        home: Scaffold(</span><br><span class="line">          body: Center(</span><br><span class="line">              child: Container(</span><br><span class="line">                  child: <span class="keyword">new</span> Text(<span class="string">"hello hanyajun "</span>, style: TextStyle(fontSize: <span class="number">40.0</span>)),</span><br><span class="line">                  alignment: Alignment.topLeft, <span class="comment">//对齐方式</span></span><br><span class="line">                  width: <span class="number">500.0</span>,</span><br><span class="line">                  height: <span class="number">400.0</span>,</span><br><span class="line">                  <span class="comment">// color:Colors.lightBlue,</span></span><br><span class="line">                  padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">10.0</span>), <span class="comment">//内边距 .fromLTRB,加了const表示不变了</span></span><br><span class="line">                  margin: <span class="keyword">const</span> EdgeInsets.all(<span class="number">10.0</span>), <span class="comment">//外边距</span></span><br><span class="line">                  decoration: <span class="keyword">new</span> BoxDecoration(</span><br><span class="line">                      gradient: <span class="keyword">const</span> LinearGradient(colors: [Colors.lightBlue, Colors.green] <span class="comment">//背景颜色渐变</span></span><br><span class="line">                          ),</span><br><span class="line">                      border: Border.all(width: <span class="number">5.0</span>, color: Colors.red) <span class="comment">//边框样式</span></span><br><span class="line">    </span><br><span class="line">                      ) <span class="comment">//修饰器（背景和边框）不能与color共存</span></span><br><span class="line"></span><br><span class="line">                  )),</span><br><span class="line">        ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="alignment属性">Alignment属性</h5>
+<p>这个属性针对的是Container内child的对齐方式，也就是容器子内容的对齐方式，并不是容器本身的对齐方式。</p>
+<ul>
+<li>bottomCenter:下部居中对齐。</li>
+<li>botomLeft: 下部左对齐。</li>
+<li>bottomRight：下部右对齐。</li>
+<li>center：纵横双向居中对齐。</li>
+<li>centerLeft：纵向居中横向居左对齐。</li>
+<li>centerRight：纵向居中横向居右对齐。</li>
+<li>topLeft：顶部左侧对齐。</li>
+<li>topCenter：顶部居中对齐。</li>
+<li>topRight： 顶部居左对齐。</li>
+</ul>
+<h5 id="设置宽-高和颜色属性">设置宽、高和颜色属性</h5>
+<p>设置宽、高和颜色属性是相对容易的，只要在属性名称后面加入浮点型数字就可以了</p>
+<h5 id="padding属性">padding属性</h5>
+<p>padding的属性就是一个内边距，它和你使用的前端技术CSS里的padding表现形式一样，指的是Container边缘和child内容的距离</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">padding:<span class="keyword">const</span> EdgeInsets.all(<span class="number">10.0</span>),</span><br></pre></td></tr></table></figure>
+<p>这句的意思是设置Container的内边距是10，左右上下全部为10</p>
+<p>我们用EdgeInsets.fromLTRB(value1,value2,value3,value4) 可以满足我们的需求，LTRB分别代表左、上、右、下</p>
+<h5 id="margin属性">margin属性</h5>
+<p>margin是外边距，指的是container和外部元素的距离。</p>
+<h5 id="decoration属性">decoration属性</h5>
+<p>decoration是 container 的修饰器，主要的功能是设置背景和边框。</p>
+<p><img src="http://cdn.hanyajun.com/2019-10-18-00-59-24.png" alt="2019-10-18-00-59-24"></p>
+<h4 id="image-widget">image widget</h4>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">        title: <span class="string">'text widget'</span>,</span><br><span class="line">        home: Scaffold(</span><br><span class="line">            body: Center(</span><br><span class="line">              child: Container(</span><br><span class="line">                child: <span class="keyword">new</span> Image.network(</span><br><span class="line">                  <span class="string">'https://hanyajun.com/img/avatar/self.jpg'</span>,</span><br><span class="line">                  <span class="comment">//fit:BoxFit.cover//图片显示方式(充满，平铺。。。)</span></span><br><span class="line">                  <span class="comment">// colorBlendMode: BlendMode.overlay,//图片颜色叠加</span></span><br><span class="line">                  repeat: ImageRepeat.repeatX<span class="comment">//图片重复</span></span><br><span class="line"></span><br><span class="line">                ),</span><br><span class="line">                width: <span class="number">300.0</span>,</span><br><span class="line">                height: <span class="number">200.0</span>,</span><br><span class="line">                color:Colors.lightBlue,</span><br><span class="line">             </span><br><span class="line">              )</span><br><span class="line">            )</span><br><span class="line">          )</span><br><span class="line">        );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="加入图片的几种方式">加入图片的几种方式</h5>
+<ul>
+<li>Image.asset:加载资源图片，就是加载项目资源目录中的图片,加入图片后会增大打包的包体体积，用的是相对路径。</li>
+<li>Image.network:网络资源图片，意思就是你需要加入一段http://xxxx.xxx的这样的网络路径地址。</li>
+<li>Image.file:加载本地图片，就是加载本地文件中的图片，这个是一个绝对路径，跟包体无关。</li>
+<li>Image.memory: 加载Uint8List资源图片</li>
+</ul>
+<h5 id="fit属性的设置">fit属性的设置</h5>
+<p>fit属性可以控制图片的拉伸和挤压，这些都是根据图片的父级容器来的.</p>
+<ul>
+<li>
+<p>BoxFit.fill:全图显示，图片会被拉伸，并充满父容器。</p>
+</li>
+<li>
+<p>BoxFit.contain:全图显示，显示原比例，可能会有空隙。</p>
+</li>
+<li>
+<p>BoxFit.cover：显示可能拉伸，可能裁切，充满（图片要充满整个容器，还不变形）。</p>
+</li>
+<li>
+<p>BoxFit.fitWidth：宽度充满（横向充满），显示可能拉伸，可能裁切。</p>
+</li>
+<li>
+<p>BoxFit.fitHeight ：高度充满（竖向充满）,显示可能拉伸，可能裁切。</p>
+</li>
+<li>
+<p>BoxFit.scaleDown：效果和contain差不多，但是此属性不允许显示超过源图片大小，可小不可大。</p>
+</li>
+</ul>
+<h5 id="图片的混合模式">图片的混合模式</h5>
+<p>图片混合模式（colorBlendMode）和color属性配合使用，能让图片改变颜色，里边的模式非常的多，产生的效果也是非常丰富的</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">child:<span class="keyword">new</span> Image.network(</span><br><span class="line">  <span class="string">'http://jspang.com/static/myimg/blogtouxiang.jpg'</span>,</span><br><span class="line">    color: Colors.greenAccent,</span><br><span class="line">    colorBlendMode: BlendMode.darken,</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<ul>
+<li>color：是要混合的颜色，如果你只设置color是没有意义的。</li>
+<li>colorBlendMode:是混合模式，相当于我们如何混合。</li>
+</ul>
+<h5 id="repeat图片重复">repeat图片重复</h5>
+<ul>
+<li>
+<p>ImageRepeat.repeat : 横向和纵向都进行重复，直到铺满整个画布。</p>
+</li>
+<li>
+<p>ImageRepeat.repeatX: 横向重复，纵向不重复。</p>
+</li>
+<li>
+<p>ImageRepeat.repeatY：纵向重复，横向不重复。</p>
+</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/2019-10-21-21-30-54.png" alt="2019-10-21-21-30-54"></p>
+<h4 id="listview-widget">ListView Widget</h4>
+<ul>
+<li>竖向</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="keyword">new</span> ListView(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">new</span> ListTile(</span><br><span class="line">              leading: <span class="keyword">new</span> Icon(Icons.perm_camera_mic),</span><br><span class="line">              title: <span class="keyword">new</span> Text(<span class="string">"perm_camera_mic"</span>),</span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">new</span> ListTile(</span><br><span class="line">              leading: <span class="keyword">new</span> Icon(Icons.access_alarms),</span><br><span class="line">              title: <span class="keyword">new</span> Text(<span class="string">"access_alarms"</span>),</span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">new</span> ListTile(</span><br><span class="line">              leading: <span class="keyword">new</span> Icon(Icons.call),</span><br><span class="line">              title: <span class="keyword">new</span> Text(<span class="string">"call"</span>),</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="crolldirection属性">crollDirection属性</h5>
+<p>ListView组件的scrollDirection属性只有两个值，一个是横向滚动，一个是纵向滚动。默认的就是垂直滚动，所以如果是垂直滚动，我们一般都不进行设置。</p>
+<ul>
+<li>Axis.horizontal:横向滚动或者叫水平方向滚动。</li>
+<li>Axis.vertical:纵向滚动或者叫垂直方向滚动。</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/2019-10-21-22-43-47.png" alt="2019-10-21-22-43-47"></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="keyword">new</span> ListView(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">new</span> Image.network(<span class="string">"https://hanyajun.com/img/avatar/self.jpg"</span>),</span><br><span class="line">            <span class="keyword">new</span> Image.network(<span class="string">"https://hanyajun.com/img/avatar/self.jpg"</span>),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.hanyajun.com/2019-10-21-22-49-40.png" alt="2019-10-21-22-49-40"></p>
+<ul>
+<li>横向</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="keyword">new</span> Center(</span><br><span class="line">          child: Container(</span><br><span class="line">            height: <span class="number">200</span>,</span><br><span class="line">            child: <span class="keyword">new</span> ListView(scrollDirection: Axis.horizontal, <span class="comment">//list 滚动方向，横向</span></span><br><span class="line">                children: &lt;Widget&gt;[</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.lightBlue,</span><br><span class="line">                  ),</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.amber,</span><br><span class="line">                  ),</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.deepOrange,</span><br><span class="line">                  ),</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.deepPurpleAccent,</span><br><span class="line">                  ),</span><br><span class="line">                ]),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.hanyajun.com/2019-10-21-23-01-00.png" alt="2019-10-21-23-01-00"></p>
+<ul>
+<li>如何减少组件之间的嵌套？</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="keyword">new</span> Center(</span><br><span class="line">          child: Container(</span><br><span class="line">            height: <span class="number">200</span>,</span><br><span class="line">            child: MyList(),<span class="comment">//使用自己实现的组件，万物皆组件</span></span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyList</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ListView(</span><br><span class="line">      scrollDirection: Axis.horizontal, <span class="comment">//list 滚动方向，横向</span></span><br><span class="line">                children: &lt;Widget&gt;[</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.lightBlue,</span><br><span class="line">                  ),</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.amber,</span><br><span class="line">                  ),</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.deepOrange,</span><br><span class="line">                  ),</span><br><span class="line">                  <span class="keyword">new</span> Container(</span><br><span class="line">                    width: <span class="number">180</span>,</span><br><span class="line">                    color: Colors.deepPurpleAccent,</span><br><span class="line">                  ),</span><br><span class="line">                ]</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>动态生成listView</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp(items: <span class="keyword">new</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt;.generate(<span class="number">1000</span>, (i) =&gt; <span class="string">"Item $i"</span>)));</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; items;</span><br><span class="line"></span><br><span class="line">  MyApp(&#123;Key key, <span class="meta">@required</span> <span class="keyword">this</span>.items&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: <span class="keyword">new</span> ListView.builder(</span><br><span class="line">          itemCount: items.length,</span><br><span class="line">          itemBuilder: (context, index) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ListTile(</span><br><span class="line">              title: <span class="keyword">new</span> Text(<span class="string">"<span class="subst">$&#123;items[index]&#125;</span>"</span>),</span><br><span class="line">            );</span><br><span class="line">          &#125;,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.hanyajun.com/2019-10-21-23-45-43.png" alt="2019-10-21-23-45-43"></p>
+<h4 id="gridview-网格列表的使用">GridView 网格列表的使用</h4>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: GridView.count(</span><br><span class="line">          padding:<span class="keyword">const</span> EdgeInsets.all(<span class="number">20.0</span>),</span><br><span class="line">          crossAxisSpacing:<span class="number">10.0</span>,<span class="comment">//网格之间的间距</span></span><br><span class="line">          crossAxisCount:<span class="number">3</span>,<span class="comment">//每行的网格数</span></span><br><span class="line">          children:&lt;Widget&gt;[</span><br><span class="line">            <span class="keyword">const</span> Text(<span class="string">"我喜欢看书"</span>),</span><br><span class="line">            <span class="keyword">const</span> Text(<span class="string">"我喜欢看书"</span>),</span><br><span class="line">            <span class="keyword">const</span> Text(<span class="string">"我喜欢看书"</span>),</span><br><span class="line">            <span class="keyword">const</span> Text(<span class="string">"我喜欢看书"</span>),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>padding:表示内边距，这个小伙伴们应该很熟悉。</li>
+<li>crossAxisSpacing:网格间的空当，相当于每个网格之间的间距。</li>
+<li>crossAxisCount:网格的列数，相当于一行放置的网格数量。</li>
+</ul>
+<p><img src="http://cdn.hanyajun.com/2019-10-22-00-22-27.png" alt="2019-10-22-00-22-27"></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">"hanyajun"</span>,</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">          title: <span class="keyword">new</span> Text(<span class="string">"ListView Widget"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: GridView(</span><br><span class="line">          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(</span><br><span class="line">            crossAxisCount:<span class="number">3</span>,</span><br><span class="line">            mainAxisSpacing: <span class="number">2.0</span>,</span><br><span class="line">            crossAxisSpacing: <span class="number">2.0</span>,</span><br><span class="line">            childAspectRatio: <span class="number">0.75</span></span><br><span class="line">          ),</span><br><span class="line">          children:&lt;Widget&gt;[</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/10/22/104316.77318635_180X260X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/10/10/112514.30587089_180X260X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/13/093605.61422332_180X260X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/07/092515.55805319_180X260X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/21/090246.16772408_135X190X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/17/162028.94879602_135X190X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/19/165350.52237320_135X190X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/16/115256.24365160_180X260X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">             <span class="keyword">new</span> Image.network(<span class="string">'http://img5.mtime.cn/mt/2018/11/20/141608.71613590_135X190X4.jpg'</span>,fit: BoxFit.cover),</span><br><span class="line">          ]</span><br><span class="line"></span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>childAspectRatio:宽高比，这个值的意思是宽是高的多少倍，如果宽是高的2倍，那我们就写2.0，如果高是宽的2倍，我们就写0.5<br>
+<img src="http://cdn.hanyajun.com/2019-10-22-00-33-58.png" alt="2019-10-22-00-33-58"></li>
+</ul>
+
+    <div id="aplayer-zGoUpfKK" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="001BR1tg1j9xGj" data-server="tencent" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div><div><h2 id="推荐文章">推荐文章<span style="font-size:0.45em; color:gray"></span></h2><ul><li><a href="https://hanyajun.com/flutter/flutter_layout/">flutter--布局</a></li></ul></div>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/flutter/flutter_layout/" data-toggle="tooltip" data-placement="top" title="flutter--布局">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/go/go_test_benchmark/" data-toggle="tooltip" data-placement="top" title="go test和benchmark如何只对指定方法进行测试">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                    <div class="reward">
+                        <div class="reward-button">赏 <span class="reward-code"> 
+                            <span class="alipay-code"> <img class="alipay-img" src="http://cdn.hanyajun.com/alipay.jpg"><b>支付宝打赏</b></span> 
+                            <span class="wechat-code"> <img class="wechat-img" src="http://cdn.hanyajun.com/wepay.png"><b>微信打赏</b> </span>
+                            </span></div>
+                        <p class="reward-notice">坚持原创技术分享，您的支持将鼓励我继续创作！</p>
+                    </div>
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+                    <!-- disqus 评论框 start -->
+                    <div class="comment">
+                        <div id="lv-container" data-id="city" data-uid="MTAyMC80MzgyNi8yMDM2MQ"></div>
+                    </div>
+                    <!-- disqus 评论框 end -->
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#flutter-study"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">flutter study</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基础组件"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">&#x57FA;&#x7840;&#x7EC4;&#x4EF6;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#text-widget"><span class="toc-nav-number">1.0.1.1.</span> <span class="toc-nav-text">Text Widget</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#textalign属性"><span class="toc-nav-number">1.0.1.1.1.</span> <span class="toc-nav-text">TextAlign&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#maxlines属性"><span class="toc-nav-number">1.0.1.1.2.</span> <span class="toc-nav-text">maxLines&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#overflow属性"><span class="toc-nav-number">1.0.1.1.3.</span> <span class="toc-nav-text">overflow&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#style属性"><span class="toc-nav-number">1.0.1.1.4.</span> <span class="toc-nav-text">style&#x5C5E;&#x6027;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#container-widget"><span class="toc-nav-number">1.0.1.2.</span> <span class="toc-nav-text">Container widget</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#alignment属性"><span class="toc-nav-number">1.0.1.2.1.</span> <span class="toc-nav-text">Alignment&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#设置宽-高和颜色属性"><span class="toc-nav-number">1.0.1.2.2.</span> <span class="toc-nav-text">&#x8BBE;&#x7F6E;&#x5BBD;&#x3001;&#x9AD8;&#x548C;&#x989C;&#x8272;&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#padding属性"><span class="toc-nav-number">1.0.1.2.3.</span> <span class="toc-nav-text">padding&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#margin属性"><span class="toc-nav-number">1.0.1.2.4.</span> <span class="toc-nav-text">margin&#x5C5E;&#x6027;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#decoration属性"><span class="toc-nav-number">1.0.1.2.5.</span> <span class="toc-nav-text">decoration&#x5C5E;&#x6027;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#image-widget"><span class="toc-nav-number">1.0.1.3.</span> <span class="toc-nav-text">image widget</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#加入图片的几种方式"><span class="toc-nav-number">1.0.1.3.1.</span> <span class="toc-nav-text">&#x52A0;&#x5165;&#x56FE;&#x7247;&#x7684;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#fit属性的设置"><span class="toc-nav-number">1.0.1.3.2.</span> <span class="toc-nav-text">fit&#x5C5E;&#x6027;&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#图片的混合模式"><span class="toc-nav-number">1.0.1.3.3.</span> <span class="toc-nav-text">&#x56FE;&#x7247;&#x7684;&#x6DF7;&#x5408;&#x6A21;&#x5F0F;</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#repeat图片重复"><span class="toc-nav-number">1.0.1.3.4.</span> <span class="toc-nav-text">repeat&#x56FE;&#x7247;&#x91CD;&#x590D;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#listview-widget"><span class="toc-nav-number">1.0.1.4.</span> <span class="toc-nav-text">ListView Widget</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#crolldirection属性"><span class="toc-nav-number">1.0.1.4.1.</span> <span class="toc-nav-text">crollDirection&#x5C5E;&#x6027;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#gridview-网格列表的使用"><span class="toc-nav-number">1.0.1.5.</span> <span class="toc-nav-text">GridView &#x7F51;&#x683C;&#x5217;&#x8868;&#x7684;&#x4F7F;&#x7528;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#推荐文章"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x63A8;&#x8350;&#x6587;&#x7AE0;<span style="font-size:0.45em; color:gray"></span></span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#flutter" title="flutter">flutter</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.csdn.net/hanyajun0123" target="_blank">CSDN Blog 韩亚军</a></li>
+                    
+                        <li><a href="https://hanyajun.com/golang-notes" target="_blank">golang学习笔记</a></li>
+                    
+                        <li><a href="https://hanyajun.com/coding_basis_review" target="_blank">编程基础复盘笔记</a></li>
+                    
+                        <li><a href="https://hanyajun.com/coding-life" target="_blank">程序人生</a></li>
+                    
+                        <li><a href="http://blog.didispace.com/" target="_blank">程序猿DD</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+    <!-- 来必力City版公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    <!-- 来必力City版 公共JS代码 end -->
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- 复制添加版权申明-->
+<script>
+    /**/
+    function setClipboardText(event){
+        event.preventDefault();//阻止元素发生默认的行为（例如，当点击提交按钮时阻止对表单的提交）。
+        var node = document.createElement('div');
+        //对documentfragment不熟，不知道怎么获取里面的内容，用了一个比较笨的方式
+        node.appendChild(window.getSelection().getRangeAt(0).cloneContents());
+        //getRangeAt(0)返回对基于零的数字索引与传递参数匹配的选择对象中的范围的引用。对于连续选择，参数应为零。
+        var htmlData = '<div>'
+            + node.innerHTML
+            + '<br /><br />著作权归作者所有。<br />'
+            + '商业转载请联系作者获得授权，非商业转载请注明出处。<br />'
+            + '作者：hanyajun <br />链接：'
+            + location.href
+            + '<br />来源：hanyajun.com<br /><br />'
+            + '</div>';
+        var textData = window.getSelection().getRangeAt(0)
+            + '\n\n著作权归作者所有。\n'
+            + '商业转载请联系作者获得授权，非商业转载请注明出处。\n'
+            + '作者：hanyajun\n'
+            + '链接：'
+            + location.href
+            + '来源：hanyajun.com\n\n';
+        if(event.clipboardData){
+            event.clipboardData.setData("text/html", htmlData);
+            //setData(剪贴板格式, 数据) 给剪贴板赋予指定格式的数据。返回 true 表示操作成功。
+            event.clipboardData.setData("text/plain",textData);
+        }
+        else if(window.clipboardData){ //window.clipboardData的作用是在页面上将需要的东西复制到剪贴板上，提供了对于预定义的剪贴板格式的访问，以便在编辑操作中使用。
+            return window.clipboardData.setData("text", textData);
+        }
+    };
+ 
+    document.addEventListener('copy',function(e){
+        setClipboardText(e);
+    });
+</script>
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Han-Ya-Jun" title="github">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href="https://blog.csdn.net/hanyajun0123" title="CSDN">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-csdn fa-stack-1x fa-inverse">C</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href="https://yq.aliyun.com/u/hanyajun" title="云栖社区">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-csdn fa-stack-1x fa-inverse">云</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href="https://juejin.im/user/5abc76cf6fb9a028bf05642e" title="掘金">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-csdn fa-stack-1x fa-inverse">掘</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                
+                    <li>
+                        <a target="_blank"  href=" mailto:hanyajun0123@163.com" title="mail">
+                            <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 韩亚军 2019 
+                    <br>
+                    Theme by <a href="http://www.huweihuang.com">胡伟煌</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://www.hanyajun.com">韩亚军</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=Han-Ya-Jun&repo=hexo-theme-hanyajun&type=star&count=true" >
+                    </iframe>
+                    <br />
+                    <!--总访问量统计-->
+                    
+                        <span>
+                        <a target="_blank" href="http://www.beianbeian.com/beianxinxi/7625ff811d2421a06b38a23c0a085037.html"><img src="/img/upload/beian.png">粤ICP备17133239号-1</a>
+                        </span>
+                        <span id="busuanzi_container_site_pv" style="margin-left: 3px;">
+                            总访问量<span id="busuanzi_value_site_pv"></span>次
+                        </span>
+                    
+                    <!--总访问量统计-->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://hanyajun.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-138985430-1';
+    var _gaDomain = 'hanyajun.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'a79d548adc1c9b6a3d8b8ba1e8d0620c';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://hanyajun.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
