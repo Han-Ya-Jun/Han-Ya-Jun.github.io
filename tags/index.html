@@ -66,6 +66,7 @@
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     
+<link rel="alternate" href="/atom.xml" title="韩亚军" type="application/atom+xml">
 </head>
 
 
@@ -225,9 +226,9 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
-                    <a href="#tools" title="tools" rel="4">tools</a>
-                
                     <a href="#go" title="go" rel="1">go</a>
+                
+                    <a href="#tools" title="tools" rel="4">tools</a>
                 
                     <a href="#kubernetes" title="kubernetes" rel="3">kubernetes</a>
                 
@@ -247,6 +248,32 @@
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="go">
+                    <span class="tag-text">go</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/go/go_test_benchmark/">
+                        <h2 class="post-title">
+                            go test和benchmark如何只对指定方法进行测试
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                go test
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="tools">
@@ -332,54 +359,9 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="go">
-                    <span class="tag-text">go</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/go/go_test_benchmark/">
-                        <h2 class="post-title">
-                            go test和benchmark如何只对指定方法进行测试
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                go test
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="kubernetes">
                     <span class="tag-text">kubernetes</span>
                 </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/kubernetes/kubernetes_architecture/">
-                        <h2 class="post-title">
-                            kubernetes从入门到放弃--k8s基本架构
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                kubernetes基本架构
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
                 
                   <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -412,6 +394,25 @@
                         
                             <h3 class="post-subtitle">
                                 使用kubeadm快速安装kubernetes
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/kubernetes/kubernetes_architecture/">
+                        <h2 class="post-title">
+                            kubernetes从入门到放弃--k8s基本架构
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                kubernetes基本架构
                             </h3>
                         
                     </a>
@@ -514,13 +515,13 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/devops/code_pipeline_devops/">
+                     <a href="/devops/gitbook_coding_ci/">
                         <h2 class="post-title">
-                            go程序基于阿里云CodePipeline的一次devops实践
+                            基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                CodePipeline的一次devops实践
+                                Travis CI实现gitbook同步部署github和coding
                             </h3>
                         
                     </a>
@@ -533,13 +534,13 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/devops/gitbook_coding_ci/">
+                     <a href="/devops/code_pipeline_devops/">
                         <h2 class="post-title">
-                            基于Travis CI实现 Gitbook在 Github 和 Coding 的同步部署
+                            go程序基于阿里云CodePipeline的一次devops实践
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                Travis CI实现gitbook同步部署github和coding
+                                CodePipeline的一次devops实践
                             </h3>
                         
                     </a>
