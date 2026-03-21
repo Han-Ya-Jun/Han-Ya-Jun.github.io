@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年3月21日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .date {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #2a5298;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 25px;
+            background: #2a5298;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .event-list {
+            list-style: none;
+        }
+        
+        .event-item {
+            background: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.2s;
+        }
+        
+        .event-item:hover {
+            transform: translateX(5px);
+            background: #e9ecef;
+        }
+        
+        .event-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .event-desc {
+            color: #5a6c7d;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .market-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .market-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .market-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .market-card .change {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .market-card.negative {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .focus-list {
+            list-style: none;
+            counter-reset: focus-counter;
+        }
+        
+        .focus-item {
+            position: relative;
+            padding: 15px 15px 15px 50px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .focus-item::before {
+            counter-increment: focus-counter;
+            content: counter(focus-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            background: #2a5298;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .focus-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .disclaimer {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+            color: #8b4513;
+        }
+        
+        .disclaimer p {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年3月21日 星期六</div>
+        </header>
+        
+        <div class="content">
+            <!-- 全球财经大事件 -->
+            <section class="section">
+                <h2 class="section-title">全球财经大事件</h2>
+                <ul class="event-list">
+                    <li class="event-item">
+                        <div class="event-title">🔴 美以对伊战争持续，特朗普称"不想要停火"</div>
+                        <div class="event-desc">中东局势恶化推动油价飙升，布伦特原油突破112美元/桶，全球滞胀风险上升，美联储及主要央行被迫维持鹰派立场</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">🟡 全球央行集体"按兵不动"应对通胀压力</div>
+                        <div class="event-desc">美联储、欧央行、英国央行、日本央行等均维持利率不变，欧央行行长拉加德警示能源价格将短期推高通胀至2%以上</div>
+                    </li>
+                    <li class="event-item">
+                        <div class="event-title">🟢 中国央行上调境外放款宏观审慎系数</div>
+                        <div class="event-desc">央行、外汇局发布《境内企业境外放款管理办法》，将宏观审慎调节系数由0.5上调至0.6，支持企业跨境融资</div>
+                    </li>
+                </ul>
+            </section>
+            
+            <!-- 昨日市场表现 -->
+            <section class="section">
+                <h2 class="section-title">昨日市场表现</h2>
+                <div class="market-grid">
+                    <div class="market-card negative">
+                        <h3>🇺🇸 道琼斯</h3>
+                        <div class="value">45,577</div>
+                        <div class="change">-0.96%</div>
+                    </div>
+                    <div class="market-card negative">
+                        <h3>🇺🇸 纳斯达克</h3>
+                        <div class="value">21,648</div>
+                        <div class="change">-2.01%</div>
+                    </div>
+                    <div class="market-card negative">
+                        <h3>🇺🇸 标普500</h3>
+                        <div class="value">6,506</div>
+                        <div class="change">-1.51%</div>
+                    </div>
+                    <div class="market-card negative">
+                        <h3>🇭🇰 恒生指数</h3>
+                        <div class="value">25,277</div>
+                        <div class="change">-0.88%</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #1e3c72; margin-bottom: 10px;">📊 其他市场</h4>
+                    <ul style="list-style: none; line-height: 1.8;">
+                        <li><strong>加密货币：</strong>BTC $70,400 (-1%) | ETH $2,149 (-2%)</li>
+                        <li><strong>原油：</strong>布伦特 $112.19/桶 (+3.26%) | WTI $98.32/桶 (+2.27%)</li>
+                        <li><strong>黄金：</strong>现货黄金 $4,657.89/盎司 (跌破4700美元关口)</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- 今日观察重点 -->
+            <section class="section">
+                <h2 class="section-title">今日观察重点</h2>
+                <ul class="focus-list">
+                    <li class="focus-item">
+                        <strong>中东局势与油价走向</strong> — 霍尔木兹海峡通航情况、美伊停火谈判进展，任何局势缓和都可能引发油价快速回落
+                    </li>
+                    <li class="focus-item">
+                        <strong>美联储官员讲话</strong> — 关注对通胀预期和降息路径的表态，鹰派言论可能继续压制科技股
+                    </li>
+                    <li class="focus-item">
+                        <strong>美股技术位支撑</strong> — 道指、纳指逼近回调区间边界（10%跌幅线），关注是否守住关键支撑
+                    </li>
+                </ul>
+            </section>
+        </div>
+        
+        <div class="disclaimer">
+            <p>⚠️ 以上分析仅供参考，不构成投资建议</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">投资有风险，入市需谨慎</p>
+        </div>
+        
+        <footer class="footer">
+            <p>报告生成时间：2026年3月21日 08:50</p>
+            <p style="margin-top: 5px; opacity: 0.8;">盘前简报 · 每日更新</p>
+        </footer>
+    </div>
+</body>
+</html>
