@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票分析报告 - 竖版</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Color+Emoji&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Noto Color Emoji', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 40px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* ===== 头部区域 ===== */
+        .header {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .stock-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .stock-name {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        
+        .stock-code {
+            font-size: 18px;
+            color: #94a3b8;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .timestamp {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #64748b;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* ===== 关键数据卡片 ===== */
+        .key-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f1f5f9;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-value.negative {
+            color: #ef4444;
+        }
+        
+        .stat-value.warning {
+            color: #f59e0b;
+        }
+        
+        .stat-value.neutral {
+            color: #60a5fa;
+        }
+        
+        /* ===== 分隔线 ===== */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.4), transparent);
+            margin: 40px 0;
+        }
+        
+        /* ===== 通用区域标题 ===== */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            line-height: 1;
+        }
+        
+        .section-title-wrap {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin-bottom: 4px;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        /* ===== 技术图表区域 ===== */
+        .chart-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 32px;
+        }
+        
+        .chart-image {
+            width: 100%;
+            border-radius: 14px;
+            display: block;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* ===== 分析要点区域 ===== */
+        .analysis-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .analysis-item {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border-left: 4px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .analysis-item:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-left-color: #60a5fa;
+        }
+        
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .analysis-icon {
+            font-size: 26px;
+            line-height: 1;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .analysis-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #cbd5e1;
+        }
+        
+        .analysis-content {
+            font-size: 15px;
+            color: #f1f5f9;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* ===== 新闻区域 ===== */
+        .news-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .news-item {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .news-item:hover {
+            transform: translateX(4px);
+            border-color: rgba(96, 165, 250, 0.4);
+            background: rgba(30, 41, 59, 0.7);
+        }
+        
+        .news-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .news-icon {
+            font-size: 24px;
+            line-height: 1;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .news-source {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(96, 165, 250, 0.15);
+            color: #60a5fa;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .news-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .news-snippet {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+        
+        /* ===== 风险提示 ===== */
+        .risk-section {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+        }
+        
+        .risk-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            color: #f59e0b;
+            margin-bottom: 12px;
+        }
+        
+        .risk-text {
+            font-size: 14px;
+            color: #fcd34d;
+            line-height: 1.9;
+        }
+        
+        /* ===== 署名区域 ===== */
+        .signature-section {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 24px 28px;
+            text-align: center;
+        }
+        
+        .signature-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        
+        .signature-emoji {
+            font-size: 40px;
+        }
+        
+        .signature-text {
+            text-align: left;
+        }
+        
+        .signature-name {
+            font-size: 20px;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 4px;
+        }
+        
+        .signature-tagline {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <div class="stock-badge">Stock Analysis Report</div>
+            <h1 class="stock-name">__STOCK_NAME__</h1>
+            <div class="stock-code">__STOCK_CODE__</div>
+            <div class="timestamp">📅 __TIMESTAMP__</div>
+        </div>
+        
+        <!-- 关键数据 -->
+        <div class="key-stats">
+            <div class="stat-card">
+                <div class="stat-label">当前价格</div>
+                <div class="stat-value __PRICE_CLASS__">__PRICE__</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">涨跌幅</div>
+                <div class="stat-value __CHANGE_CLASS__">__CHANGE__</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">量化评分</div>
+                <div class="stat-value __SCORE_CLASS__">__SCORE__</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">操作信号</div>
+                <div class="stat-value __SIGNAL_CLASS__">__SIGNAL__</div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- 技术图表 -->
+        <div class="section-header">
+            <div class="section-icon">📈</div>
+            <div class="section-title-wrap">
+                <div class="section-title">技术分析图表</div>
+                <div class="section-subtitle">K线 + 均线 + MACD + RSI</div>
+            </div>
+        </div>
+        
+        <div class="chart-section">
+            <img src="data:image/png;base64,__CHART_BASE64__" class="chart-image" alt="技术分析图表">
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- 分析要点 -->
+        <div class="section-header">
+            <div class="section-icon">🎯</div>
+            <div class="section-title-wrap">
+                <div class="section-title">核心分析要点</div>
+                <div class="section-subtitle">量化系统核心结论</div>
+            </div>
+        </div>
+        
+        <div class="analysis-grid">
+            __ANALYSIS_ITEMS__
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- 新闻展示 -->
+        <div class="section-header">
+            <div class="section-icon">📰</div>
+            <div class="section-title-wrap">
+                <div class="section-title">重磅新闻面</div>
+                <div class="section-subtitle">市场最新资讯</div>
+            </div>
+        </div>
+        
+        <div class="news-grid">
+            __NEWS_ITEMS__
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- 免责声明 -->
+        <div class="risk-section">
+            <div class="risk-title">
+                <span>⚠️</span>
+                <span>风险提示与免责声明</span>
+            </div>
+            <div class="risk-text">以上分析仅供参考，不构成任何投资建议。股票市场有风险，投资需谨慎。请根据自身风险承受能力做出投资决策。量化信号基于历史数据，不代表未来表现。</div>
+        </div>
+        
+        <!-- 署名 -->
+        <div class="signature-section">
+            <div class="signature-content">
+                <div class="signature-emoji">🦊</div>
+                <div class="signature-text">
+                    <div class="signature-name">hanbot</div>
+                    <div class="signature-tagline">聪明、机智、专业的狐狸助手</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
